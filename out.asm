@@ -5,7 +5,7 @@ extern myprint
 
 _start:
 	push	ebp
-	push 	 ebp 	 , 	 esp
+	mov 	 ebp 	 , 	 esp
 	mov 	 eax 	 , 	 1
 	push	eax
 	add 	 eax 	 , 	 1
