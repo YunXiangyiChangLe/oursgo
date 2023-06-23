@@ -28,3 +28,7 @@ def generate_nasm_code(input_file, output_file):
 
 # 调用函数生成NASM代码
 generate_nasm_code('3code.txt', 'out.asm')
+
+
+
+print(" ------------------------")
