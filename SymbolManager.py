@@ -116,7 +116,7 @@ class SymbolManager:
             self.use_info_[var_en] = use_info
 
     def get_free_reg(self) -> REG:
-        for i in range(int(REG.Cnts)):
+        for i in range(REG.Cnts.value):
             if not self.rvalue_[i]:
                 return REG(i)
         return REG.Cnts

@@ -20,7 +20,9 @@ class AssignTranslator:
             dst_reg = replaced_reg.reg
 
         # 如果需要进行备份原来寄存器
-        if not replaced_reg.no_use:
+        # print("cnm")
+        # print(replaced_reg==None)
+        if replaced_reg and not replaced_reg.no_use:
             if replaced_reg.mem == -1:
                 # 如果该变量内存中没有位置，push备份
                 SymbolManager_.push_reg(dst_reg,1)

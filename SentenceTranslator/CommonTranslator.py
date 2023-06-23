@@ -36,7 +36,7 @@ class CommonTranslator:
                 if reg_dst != reg_src1:
                     asmlines.append(construct_asm(op="mov", dst=reg_dst, src=reg_src1))
                 else:
-                    SymbolManager_.push_reg(reg_src1)
+                    SymbolManager_.push_reg(reg_src1,1)
                     asmlines.append(construct_asm(op="push", src=reg_src1))
             elif pos == POSTYPE.MEM:
                 mem_src1: int = SymbolManager_.avalue_mem(str_src1_encode)
