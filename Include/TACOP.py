@@ -1,0 +1,4 @@
+SUCCESS = 1
+FAIL = 0
+DELIMITER = "#"
+INT_SIZE = "4"

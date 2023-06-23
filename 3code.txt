@@ -1,0 +1,17 @@
+0	ASSIGN	1		v1
+1	ADD	v1	1	T0
+2	ASSIGN	T0		v2
+3	ADD	v2	1	T1
+4	ASSIGN	T1		v3
+5	ADD	v3	1	T2
+6	ASSIGN	T2		v4
+7	ADD	v4	1	T3
+8	ASSIGN	T3		v5
+9	ADD	v5	1	T4
+10	ASSIGN	T4		v6
+11	ADD	v6	1	T5
+12	ASSIGN	T5		v7
+13	ADD	v7	1	T6
+14	ASSIGN	T6		v8
+----------------------
+----------------------
