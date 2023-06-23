@@ -14,6 +14,8 @@ class CallTranslator:
         fun_name: str = TACLine_.src1.value
         asmlines.append(construct_asm(op="call", src=fun_name))
         fun = SymbolManager_.resolve_fun(fun_name)
+        # print("cnm")
+        # print(fun.fun_para_type_list)
         if fun != None:
             para_num: int = len(fun.fun_para_type_list)
             SymbolManager_.set_esp_bias(-4 * para_num)
