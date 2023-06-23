@@ -19,7 +19,7 @@ def to_string(reg: REG) -> str:
         REG.EAX:"eax",
         REG.EBX:"ebx",
         REG.ECX:"ecx",
-        REG.EDX:"esx",
+        REG.EDX:"edx",
         REG.ESI:"esi",
         REG.EDI:"edi",
         REG.ESP:"esp",

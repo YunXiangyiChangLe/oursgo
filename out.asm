@@ -15,10 +15,10 @@ _start:
 	mov 	 ecx 	 , 	 ebx
 	push	ecx
 	add 	 ecx 	 , 	 1
-	mov 	 esx 	 , 	 ecx
-	push	esx
-	add 	 esx 	 , 	 1
-	mov 	 esi 	 , 	 esx
+	mov 	 edx 	 , 	 ecx
+	push	edx
+	add 	 edx 	 , 	 1
+	mov 	 esi 	 , 	 edx
 	push	esi
 	add 	 esi 	 , 	 1
 	mov 	 eax 	 , 	 esi
