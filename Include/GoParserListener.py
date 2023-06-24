@@ -1,4 +1,4 @@
-# Generated from .\antlr_python_forgolang\GoParser.g4 by ANTLR 4.8
+# Generated from GoParser.g4 by ANTLR 4.8
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .GoParser import GoParser

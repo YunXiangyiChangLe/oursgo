@@ -12,6 +12,8 @@ from Include.GoParser import *
 from Include.GoParserListener import *
 import getopt
 import Translator as ts
+import os
+
 
 class CmdParam:
     def __init__(self):
@@ -72,6 +74,9 @@ def read_cmd_param(argc: int, argv: list[str]):
 
 
 if __name__ == '__main__':
+    f = os.popen("java -jar antlr-4.8-complete.jar -Dlanguage=Python3 GoLexer.g4 GoParser.g4 -o Include")
+    print(f.read())
+
     cmd0 = 'cd ./grammar/java'
     cmd0 += '&& javac *.java'
     cmd0 += '&& cd ../../build'
@@ -97,14 +102,13 @@ if __name__ == '__main__':
     listener.Go23file_(path_3code)
     print('end')
 
-
- # 三地址到汇编部分
+    # 三地址到汇编部分
     # print("hello")
-    tac_file=listener.TACBlocks
+    tac_file = listener.TACBlocks
     # print(tac_file)
     # print(isinstance(tac_file["global"], typing._GenericAlias))
     # print(isinstance(tac_file["myprint"], typing._GenericAlias))
-    translator = ts.Translator(tac_file,listener.globalScope)
+    translator = ts.Translator(tac_file, listener.globalScope)
     translator.Translate()
-    path_asm="./out.asm"
+    path_asm = "./out.asm"
     translator.OutputFile(path_asm)

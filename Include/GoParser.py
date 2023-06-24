@@ -1,4 +1,4 @@
-# Generated from .\antlr_python_forgolang\GoParser.g4 by ANTLR 4.8
+# Generated from GoParser.g4 by ANTLR 4.8
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
