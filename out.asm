@@ -28,6 +28,21 @@ _start:
 	push	eax
 	add 	 eax 	 , 	 1
 	mov 	 eax 	 , 	 eax
+	sub 	 esp 	 , 	 4
+	mov 	 edi 	 , 	 [ ebp - 4 ]
+	push	edi
+	call	myprint
+	add 	 esp 	 , 	 0
+	sub 	 esp 	 , 	 4
+	mov 	 edi 	 , 	 [ ebp - 8 ]
+	push	edi
+	call	myprint
+	add 	 esp 	 , 	 0
+	sub 	 esp 	 , 	 4
+	mov 	 edi 	 , 	 [ ebp - 12 ]
+	push	edi
+	call	myprint
+	add 	 esp 	 , 	 0
 	pop	ebp
 	mov 	 eax 	 , 	 1
 	mov 	 ebx 	 , 	 0

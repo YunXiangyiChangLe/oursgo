@@ -17,7 +17,7 @@ class CallTranslator:
         # print("cnm")
         # print(fun.fun_para_type_list)
         if fun != None:
-            para_num: int = len(fun.fun_para_type_list)
+            para_num: int =0 if fun.fun_para_type_list==None else len(fun.fun_para_type_list)
             SymbolManager_.set_esp_bias(-4 * para_num)
             asmlines.append(construct_asm(op="add", dst=REG.ESP, src=str(4 * para_num)))
         else:
