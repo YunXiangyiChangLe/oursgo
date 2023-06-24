@@ -51,7 +51,7 @@ class TrCodeGen(GoParserListener):
         self.ptrs: dict = {}
         self.globalScope: Scope = Scope()
         self.curFun = 'global'
-        self.allScope:list = []
+        self.allScope: list = []
         self.values = {}
         self.ifvalues = {}
         self.forvalues = {}
@@ -66,7 +66,7 @@ class TrCodeGen(GoParserListener):
         while (CheckResult):
             local = 'T' + str(self.loaclIndex)  # 临时变量的命名规则：T*
             self.loaclIndex += 1
-            res,_ = self.currentScope.resolve(local)
+            res, _ = self.currentScope.resolve(local)
             if res == SUCCESS:
                 CheckResult = True
             else:
@@ -167,7 +167,8 @@ class TrCodeGen(GoParserListener):
                   continue
               block = self.TACBlocks.get(key)
               for it in block:
-                  outfile.write(f"{it.line}\t{self.TACOPToString(it.op)}\t{it.src1.value}\t{it.src2.value}\t{it.dst.value}\n")
+                  outfile.write(
+                      f"{it.line}\t{self.TACOPToString(it.op)}\t{it.src1.value}\t{it.src2.value}\t{it.dst.value}\n")
               outfile.write("----------------------\n")
           outfile.write("----------------------\n")
           outfile.close()
@@ -194,7 +195,7 @@ class TrCodeGen(GoParserListener):
             print('fun_symbols: ' + key.__str__())
 
     def addScope(self):
-        scope = Scope( self.currentScope)
+        scope = Scope(self.currentScope)
         self.allScope.append(scope)
         self.currentScope = scope
 
@@ -203,8 +204,8 @@ class TrCodeGen(GoParserListener):
         if self.currentScope.enclosing_scope == None:
             self.currentScope.enclosing_scope = Scope(None)
             self.currentScope.enclosing_scope.fun_symbols = self.currentScope.fun_symbols
-            self.currentScope.enclosing_scope.para_symbols = {}
-            
+            self.currentScope.enclosing_scope.para_symbols = self.currentScope.para_symbols
+
         self.currentScope = self.currentScope.enclosing_scope
 
     # Enter a parse tree produced by GoParser#sourceFile.
@@ -314,7 +315,7 @@ class TrCodeGen(GoParserListener):
 
     # Enter a parse tree produced by GoParser#functionDecl.
     def enterFunctionDecl(self, ctx: GoParser.FunctionDeclContext):
-        #self.addScope()
+        # self.addScope()
         identifier: string = ctx.IDENTIFIER().getText()
         if self.currentScope and self.currentScope.cur_resolve(identifier) == SUCCESS:
             print('Redeclaration of function' + identifier)
@@ -348,11 +349,11 @@ class TrCodeGen(GoParserListener):
         symbol = Symbol(identifier, self.currentScope,
                         SymbolType.FUN, funRetTypeList, funParaList)
         scope = Scope(self.currentScope)
-        if not self.currentScope :
+        if not self.currentScope:
             self.currentScope = Scope()
         self.currentScope.fun_define(symbol)
         self.currentScope = scope
-        
+
         for i in range(0, ctx.signature().parameters().parameterDecl().__len__()):
             for j in range(0, ctx.signature().parameters().parameterDecl(i).identifierList().IDENTIFIER().__len__()):
                 fun_para = ctx.signature().parameters().parameterDecl(
@@ -399,12 +400,11 @@ class TrCodeGen(GoParserListener):
     def exitVarSpec(self, ctx: GoParser.VarSpecContext):
         is_array = False
         array_length = 0
-        if ctx.type_() != None and ctx.type_().typeLit() != None:
+        if ctx.type_() and ctx.type_().typeLit():
             is_array = True
             right_values = []
-            print(ctx.getText())
             right_values = Utils.ctx_decoder(
-                self.values.get(ctx.type_().typeLit().arrayType().arrayLength()).__str__())
+                self.values.get(ctx.type_().typeLit().arrayType().arrayLength().expression()))
             if right_values.__len__() != 1:
                 print('wrong number of array length input ')
                 exit(-1)
@@ -421,14 +421,14 @@ class TrCodeGen(GoParserListener):
         for i in range(0, n):
             varname = ctx.identifierList().IDENTIFIER(i).getText()
             type: Type
-            if ctx.type_() != None:
+            if ctx.type_() == None:
                 type = self.defineTmpType()
             else:
-                if ctx.type_().typeName() != None:
+                if ctx.type_().typeName():
                     stype = ctx.type_().typeName().getText()
                     type = Symbol.toType(stype)
                 elif ctx.type_().typeLit() and ctx.type_().typeLit().arrayType():
-                    stype = ctx.type_().typeName().getText()
+                    stype = ctx.type_().typeLit().arrayType().elementType().getText()
                     type = Symbol.toType(stype)
             if self.currentScope.cur_resolve(varname):
                 print('Redeclaration of parameter' + varname + '')
@@ -440,7 +440,7 @@ class TrCodeGen(GoParserListener):
                     array_length), self.OperandTypereslove(to_string(array_length))), Operand("INT", TACOPERANDTYPE.NULL_))
             self.currentScope.para_define(symbol)
         if ctx.expressionList():
-            #right_values = []
+            # right_values = []
             right_values = Utils.ctx_decoder(
                 self.values.get(ctx.expressionList()))
             if n != right_values.__len__():
@@ -470,11 +470,11 @@ class TrCodeGen(GoParserListener):
             loopCondition: TACLine = fortmp.LoopCon
             if updateCondition:
                 self.push_line(updateCondition.op, updateCondition.src1,
-                           updateCondition.src2, updateCondition.dst)
+                               updateCondition.src2, updateCondition.dst)
             if loopCondition:
                 self.push_line(loopCondition.op, loopCondition.src1,
-                           loopCondition.src2, loopCondition.dst)
-        if ctx.parentCtx.children.__len__() > 2 and  ctx.parentCtx.children[2] == ctx and ctx.parentCtx.children[0].getText() == 'if':
+                               loopCondition.src2, loopCondition.dst)
+        if ctx.parentCtx.children.__len__() > 2 and ctx.parentCtx.children[2] == ctx and ctx.parentCtx.children[0].getText() == 'if':
             self.push_line(TACOP.GOTO, Operand("ENDIF" + self.ifvalues.get(ctx.parentCtx),
                            TACOPERANDTYPE.LABEL), Operand("", TACOPERANDTYPE.NULL_), Operand("", TACOPERANDTYPE.NULL_))
         self.popScope()
@@ -526,7 +526,8 @@ class TrCodeGen(GoParserListener):
     # Exit a parse tree produced by GoParser#incDecStmt.
     def exitIncDecStmt(self, ctx: GoParser.IncDecStmtContext):
         if ctx.children[1].getText() == '++':
-            left_values = Utils.ctx_decoder(self.values.get(ctx.expression()).__str__())
+            left_values = Utils.ctx_decoder(
+                self.values.get(ctx.expression()).__str__())
             if left_values.__len__() != 1:
                 print('too many parameter for incdec \"++\" ')
                 exit(-1)
@@ -567,7 +568,7 @@ class TrCodeGen(GoParserListener):
                 varvalue = right_values[i]
                 self.push_line(TACOP.ASSIGN, Operand(varvalue, self.OperandTypereslove(varvalue)), Operand(
                     "", TACOPERANDTYPE.NULL_), Operand(varname, self.OperandTypereslove(varname)))
-                
+
         if ctx.assign_op().getText() == '+=':
             left_values = []
             right_values = []
@@ -586,7 +587,7 @@ class TrCodeGen(GoParserListener):
                 tmpline = TACLine(self.lineIndex, TACOP.ADD, Operand(varname, self.OperandTypereslove(varname)), Operand(
                     varvalue, self.OperandTypereslove(varvalue)), Operand(varname, self.OperandTypereslove(varname)), self.currentScope)
                 fortmp.UpdateCon = tmpline
-                self.forvalues[ctx.parentCtx.parentCtx.parentCtx]= fortmp
+                self.forvalues[ctx.parentCtx.parentCtx.parentCtx] = fortmp
             else:
                 varname = left_values[0]
                 varvalue = right_values[0]
@@ -629,7 +630,7 @@ class TrCodeGen(GoParserListener):
                 ctx.parentCtx.parentCtx.parentCtx)
             for i in range(0, n):
                 varname = ctx.identifierList().IDENTIFIER(i).getText()
-                
+
                 tmp.newParas.append(varname)
             self.forvalues[ctx.parentCtx.parentCtx.parentCtx] = tmp
 
@@ -656,7 +657,7 @@ class TrCodeGen(GoParserListener):
     # Exit a parse tree produced by GoParser#returnStmt.
     def exitReturnStmt(self, ctx: GoParser.ReturnStmtContext):
         return_values = []
-        
+
         return_values = Utils.ctx_decoder(
             self.values.get(ctx.expressionList()))
         for i in return_values:
@@ -712,7 +713,7 @@ class TrCodeGen(GoParserListener):
     # Enter a parse tree produced by GoParser#ifStmt.
     def enterIfStmt(self, ctx: GoParser.IfStmtContext):
         iftmp = self.CreateElseLabel()
-        self.ifvalues[ctx]= iftmp
+        self.ifvalues[ctx] = iftmp
 
     # Exit a parse tree produced by GoParser#ifStmt.
     def exitIfStmt(self, ctx: GoParser.IfStmtContext):
@@ -1045,7 +1046,7 @@ class TrCodeGen(GoParserListener):
         plusMinusOperation_values.append(dst)
 
         if ctx.PLUS():
-            #print(left[0] + " "+ right[0] + " " + dst)
+            # print(left[0] + " "+ right[0] + " " + dst)
             self.push_line(TACOP.ADD, Operand(left[0], self.OperandTypereslove(left[0])), Operand(
                 right[0], self.OperandTypereslove(right[0])), Operand(dst, self.OperandTypereslove(dst)))
         elif ctx.MINUS() != None:
@@ -1065,7 +1066,7 @@ class TrCodeGen(GoParserListener):
             print('wrong literal number2')
             exit(-1)
         if ctx.parentCtx.parentCtx.children[0].getText() == 'for' and ctx.parentCtx.parentCtx.children[1] == ctx.parentCtx:
-            #tmp = ForStmt()
+            # tmp = ForStmt()
             tmp = self.forvalues.get(ctx.parentCtx.parentCtx)
             dst = 'ENDFOR' + tmp.CurIndex
             dst_ = 'FORLOOP' + tmp.CurIndex
@@ -1161,7 +1162,7 @@ class TrCodeGen(GoParserListener):
             primaryExpr_value = []
             fun_identity = Utils.ctx_decoder(
                 self.values.get(ctx.primaryExpr()).__str__())
-            print(ctx.primaryExpr().getText())   
+            print(ctx.primaryExpr().getText())
             identity = fun_identity[0]
             fun_symbol: Symbol
             res, fun_symbol = self.currentScope.resolve(identity, None)
@@ -1189,12 +1190,15 @@ class TrCodeGen(GoParserListener):
             self.values[ctx] = PrimaryExprValue
         elif ctx.index():
             array_name = []
-            array_name = Utils.ctx_decoder(self.values.get(ctx.primaryExpr()).__str__())
+            array_name = Utils.ctx_decoder(
+                self.values.get(ctx.primaryExpr()).__str__())
             identity = array_name[0]
-            array_symbol = Symbol()
-            _, array_symbol = self.currentScope.resolve(identity, array_symbol)
+            array_symbol: Symbol
+            _, array_symbol = self.currentScope.resolve(identity, None)
+            print(array_symbol.name)
             if not array_symbol.is_array:
                 print("Only array can be indexed: " + identity + '')
+                exit(-1)
             array_index = []
             array_index = Utils.ctx_decoder(
                 self.values.get(ctx.index().expression()))
@@ -1206,7 +1210,7 @@ class TrCodeGen(GoParserListener):
                 idx = int(index_s)
                 if idx > array_symbol.array_length - 1 or idx < 0:
                     print('Array index out of bound: ' + identity + '')
-                    print(idx + ' ' + array_symbol.array_length + '')
+                    print(idx.__str__() + ' ' + array_symbol.array_length.__str__() + '')
                     exit(-1)
             temp_ptr_offset = self.CreateLocalVar()
             int_size = "4"

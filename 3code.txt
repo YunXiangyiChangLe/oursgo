@@ -1,28 +1,26 @@
 0	FUN_PARA	a		
 ----------------------
-1	ASSIGN	1		v1
-2	ADD	v1	1	T0
-3	ASSIGN	T0		v2
-4	ADD	v2	1	T1
-5	ASSIGN	T1		v3
-6	ADD	v3	1	T2
-7	ASSIGN	T2		v4
-8	ADD	v4	1	T3
-9	ASSIGN	T3		v5
-10	ADD	v5	1	T4
-11	ASSIGN	T4		v6
-12	ADD	v6	1	T5
-13	ASSIGN	T5		v7
-14	ADD	v7	1	T6
-15	ASSIGN	T6		v8
-16	RET	T7		
-17	PARA	v1		
+1	FUN_PARA	a		
+2	FUN_PARA	b		
+3	ADD	a	1	T0
+4	ADD	b	1	T1
+5	FUN_RET	T0		
+6	FUN_RET	T1		
+----------------------
+7	ASSIGN	100		a
+8	ASSIGN	105		b
+9	RET	T2		
+10	RET	T3		
+11	PARA	a		
+12	PARA	b		
+13	CALL	add1		
+14	ASSIGN	T2		c
+15	ASSIGN	T3		d
+16	RET	T4		
+17	PARA	c		
 18	CALL	myprint		
-19	RET	T8		
-20	PARA	v2		
+19	RET	T5		
+20	PARA	d		
 21	CALL	myprint		
-22	RET	T9		
-23	PARA	v3		
-24	CALL	myprint		
 ----------------------
 ----------------------

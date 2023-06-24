@@ -49,7 +49,6 @@ class Scope:
         
         
     def resolve(self, name: str, ret: Symbol = None):
-        #print(name)
         if name in self.fun_symbols:
             ret = self.fun_symbols[name]
             return SUCCESS,ret
