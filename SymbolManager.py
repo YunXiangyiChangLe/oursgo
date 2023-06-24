@@ -98,7 +98,7 @@ class SymbolManager:
                 # 置位符号表 src1 的待用信息和活跃信息
                 _ = UseInfo(line.line, True)
                 self.set_use_info(line.src1.value, _)
-            if line.src2.OperType == TACOPERANDTYPE.VAR:#gyj加的    
+            if line.src2.OperType == TACOPERANDTYPE.VAR:  # gyj加的
                 # 把符号表中 src2 的待用信息和活跃信息 附加到 中间代码上
                 line.src2.use_info = self.use_info(line.src2.value)
                 # 置位符号表 src2 的待用信息和活跃信息
@@ -128,7 +128,7 @@ class SymbolManager:
                     return self.avalue_reg(dst)
                 if dst in self.avalue_mem_:
                     return REG.EDI
-                if src1 and self.avalue_reg(src1) != REG.Cnts:#gyj加的
+                if src1 and self.avalue_reg(src1) != REG.Cnts:  # gyj加的
                     return self.avalue_reg(src1)
             return self.get_free_reg()
         else:
@@ -204,7 +204,7 @@ class SymbolManager:
             return None
 
     def set_avalue_reg(self, variable: str, reg: REG):
-        if(reg==None):
+        if (reg == None):
             return
         old = self.rvalue_[reg.value]
         if old in self.avalue_reg_ and self.avalue_reg_[old] == reg:
@@ -235,6 +235,8 @@ class SymbolManager:
 
     # 需要改正
     def position(self, variable: str) -> POSTYPE:
+        if variable == '':
+            return POSTYPE.GLOBAL
         pos = variable.find(":")
         scope_str = variable[:pos]
         true_name = variable[pos + 1:]
