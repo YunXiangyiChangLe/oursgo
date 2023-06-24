@@ -4,15 +4,11 @@ package main
 func myprint(a int)
 
 
-func add(a int, b int) (int) {
-	return a+b
-}
-
-
 func main() {
-	var a = 5;
-	var b = 6;
-	var c= add(a, b)
-	myprint(c)
-
+	var i int
+	var sum = 0
+	for i = 0; i <= 10; i++ {
+		sum += i
+		myprint(sum)
+	}
 }
