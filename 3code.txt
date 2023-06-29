@@ -1,8 +1,9 @@
 0	FUN_PARA	a		
 ----------------------
 1	ASSIGN	1		v1
-2	RET	T0		
-3	PARA	v1		
-4	CALL	myprint		
+2	ASSIGN	2		v2
+3	RET	T0		
+4	PARA	v1		
+5	CALL	myprint		
 ----------------------
 ----------------------
