@@ -77,10 +77,10 @@ if __name__ == '__main__':
     f = os.popen("java -jar antlr-4.8-complete.jar -Dlanguage=Python3 GoLexer.g4 GoParser.g4 -o Include")
     print(f.read())
 
-    cmd0 = 'cd ./grammar/java'
-    cmd0 += '&& javac *.java'
-    cmd0 += '&& cd ../../build'
-    os.system(cmd0)
+    # cmd0 = 'cd ./grammar/java'
+    # cmd0 += '&& javac *.java'
+    # cmd0 += '&& cd ../../build'
+    # os.system(cmd0)
 
     argv = sys.argv
 

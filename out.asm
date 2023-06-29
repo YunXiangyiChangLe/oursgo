@@ -7,6 +7,7 @@ _start:
 	push	ebp
 	mov 	 ebp 	 , 	 esp
 	mov 	 eax 	 , 	 1
+	mov 	 ebx 	 , 	 2
 	sub 	 esp 	 , 	 4
 	push	eax
 	call	myprint
