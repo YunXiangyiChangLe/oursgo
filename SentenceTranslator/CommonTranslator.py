@@ -28,7 +28,7 @@ class CommonTranslator:
             if reg_dst == REG.Cnts:
                 replaced_reg: RelacedEeg = SymbolManager_.get_replaced_reg()
                 reg_dst = replaced_reg.reg
-                SymbolManager_.push_reg(reg_dst,1)
+                SymbolManager_.push_reg(reg_dst, 1)
                 asmlines.append(construct_asm(op="push", src=reg_dst))
             pos: POSTYPE = SymbolManager_.position(str_src1_encode)
             if pos == POSTYPE.REG:
@@ -36,7 +36,7 @@ class CommonTranslator:
                 if reg_dst != reg_src1:
                     asmlines.append(construct_asm(op="mov", dst=reg_dst, src=reg_src1))
                 else:
-                    SymbolManager_.push_reg(reg_src1,1)
+                    SymbolManager_.push_reg(reg_src1, 1)
                     asmlines.append(construct_asm(op="push", src=reg_src1))
             elif pos == POSTYPE.MEM:
                 mem_src1: int = SymbolManager_.avalue_mem(str_src1_encode)
@@ -68,7 +68,3 @@ class CommonTranslator:
             dst_mem: int = SymbolManager_.avalue_mem(str_dst_encode)
             asmlines.append(construct_asm(op="mov", dst=dst_mem, src=reg_dst))
         return asmlines
-
-
-
-

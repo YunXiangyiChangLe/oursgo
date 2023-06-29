@@ -3,10 +3,11 @@
 from antlr4 import *
 from io import StringIO
 import sys
+
 if sys.version_info[1] > 5:
-	from typing import TextIO
+    from typing import TextIO
 else:
-	from typing.io import TextIO
+    from typing.io import TextIO
 
 
 def serializedATN():
@@ -487,48 +488,47 @@ def serializedATN():
         return buf.getvalue()
 
 
-class GoParser ( Parser ):
-
+class GoParser(Parser):
     grammarFileName = "GoParser.g4"
 
     atn = ATNDeserializer().deserialize(serializedATN())
 
-    decisionsToDFA = [ DFA(ds, i) for i, ds in enumerate(atn.decisionToState) ]
+    decisionsToDFA = [DFA(ds, i) for i, ds in enumerate(atn.decisionToState)]
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'break'", "'default'", "'func'", "'interface'", 
-                     "'select'", "'case'", "'defer'", "'go'", "'map'", "'struct'", 
-                     "'chan'", "'else'", "'goto'", "'package'", "'switch'", 
-                     "'const'", "'fallthrough'", "'if'", "'range'", "'type'", 
-                     "'continue'", "'for'", "'import'", "'return'", "'var'", 
-                     "'nil'", "<INVALID>", "'('", "')'", "'{'", "'}'", "'['", 
-                     "']'", "'='", "','", "';'", "'\n'", "'\r\n'", "':'", 
-                     "'.'", "'++'", "'--'", "':='", "'...'", "<INVALID>", 
-                     "'||'", "'&&'", "'=='", "'!='", "'<'", "'<='", "'>'", 
-                     "'>='", "'|'", "'/'", "'%'", "'<<'", "'>>'", "'&^'", 
-                     "'!'", "'+'", "'-'", "'^'", "'*'", "'&'", "'<-'" ]
+    literalNames = ["<INVALID>", "'break'", "'default'", "'func'", "'interface'",
+                    "'select'", "'case'", "'defer'", "'go'", "'map'", "'struct'",
+                    "'chan'", "'else'", "'goto'", "'package'", "'switch'",
+                    "'const'", "'fallthrough'", "'if'", "'range'", "'type'",
+                    "'continue'", "'for'", "'import'", "'return'", "'var'",
+                    "'nil'", "<INVALID>", "'('", "')'", "'{'", "'}'", "'['",
+                    "']'", "'='", "','", "';'", "'\n'", "'\r\n'", "':'",
+                    "'.'", "'++'", "'--'", "':='", "'...'", "<INVALID>",
+                    "'||'", "'&&'", "'=='", "'!='", "'<'", "'<='", "'>'",
+                    "'>='", "'|'", "'/'", "'%'", "'<<'", "'>>'", "'&^'",
+                    "'!'", "'+'", "'-'", "'^'", "'*'", "'&'", "'<-'"]
 
-    symbolicNames = [ "<INVALID>", "BREAK", "DEFAULT", "FUNC", "INTERFACE", 
-                      "SELECT", "CASE", "DEFER", "GO", "MAP", "STRUCT", 
-                      "CHAN", "ELSE", "GOTO", "PACKAGE", "SWITCH", "CONST", 
-                      "FALLTHROUGH", "IF", "RANGE", "TYPE", "CONTINUE", 
-                      "FOR", "IMPORT", "RETURN", "VAR", "NIL_LIT", "IDENTIFIER", 
-                      "L_PAREN", "R_PAREN", "L_CURLY", "R_CURLY", "L_BRACKET", 
-                      "R_BRACKET", "ASSIGN", "COMMA", "SEMI", "HUANHANG", 
-                      "HUANHANGG", "COLON", "DOT", "PLUS_PLUS", "MINUS_MINUS", 
-                      "DECLARE_ASSIGN", "ELLIPSIS", "EOSSS", "LOGICAL_OR", 
-                      "LOGICAL_AND", "EQUALS", "NOT_EQUALS", "LESS", "LESS_OR_EQUALS", 
-                      "GREATER", "GREATER_OR_EQUALS", "OR", "DIV", "MOD", 
-                      "LSHIFT", "RSHIFT", "BIT_CLEAR", "EXCLAMATION", "PLUS", 
-                      "MINUS", "CARET", "STAR", "AMPERSAND", "RECEIVE", 
-                      "DECIMAL_LIT", "BINARY_LIT", "OCTAL_LIT", "HEX_LIT", 
-                      "FLOAT_LIT", "DECIMAL_FLOAT_LIT", "HEX_FLOAT_LIT", 
-                      "IMAGINARY_LIT", "RUNE_LIT", "BYTE_VALUE", "OCTAL_BYTE_VALUE", 
-                      "HEX_BYTE_VALUE", "LITTLE_U_VALUE", "BIG_U_VALUE", 
-                      "RAW_STRING_LIT", "INTERPRETED_STRING_LIT", "WS", 
-                      "COMMENT", "TERMINATOR", "LINE_COMMENT", "WS_NLSEMI", 
-                      "COMMENT_NLSEMI", "LINE_COMMENT_NLSEMI" ]
+    symbolicNames = ["<INVALID>", "BREAK", "DEFAULT", "FUNC", "INTERFACE",
+                     "SELECT", "CASE", "DEFER", "GO", "MAP", "STRUCT",
+                     "CHAN", "ELSE", "GOTO", "PACKAGE", "SWITCH", "CONST",
+                     "FALLTHROUGH", "IF", "RANGE", "TYPE", "CONTINUE",
+                     "FOR", "IMPORT", "RETURN", "VAR", "NIL_LIT", "IDENTIFIER",
+                     "L_PAREN", "R_PAREN", "L_CURLY", "R_CURLY", "L_BRACKET",
+                     "R_BRACKET", "ASSIGN", "COMMA", "SEMI", "HUANHANG",
+                     "HUANHANGG", "COLON", "DOT", "PLUS_PLUS", "MINUS_MINUS",
+                     "DECLARE_ASSIGN", "ELLIPSIS", "EOSSS", "LOGICAL_OR",
+                     "LOGICAL_AND", "EQUALS", "NOT_EQUALS", "LESS", "LESS_OR_EQUALS",
+                     "GREATER", "GREATER_OR_EQUALS", "OR", "DIV", "MOD",
+                     "LSHIFT", "RSHIFT", "BIT_CLEAR", "EXCLAMATION", "PLUS",
+                     "MINUS", "CARET", "STAR", "AMPERSAND", "RECEIVE",
+                     "DECIMAL_LIT", "BINARY_LIT", "OCTAL_LIT", "HEX_LIT",
+                     "FLOAT_LIT", "DECIMAL_FLOAT_LIT", "HEX_FLOAT_LIT",
+                     "IMAGINARY_LIT", "RUNE_LIT", "BYTE_VALUE", "OCTAL_BYTE_VALUE",
+                     "HEX_BYTE_VALUE", "LITTLE_U_VALUE", "BIG_U_VALUE",
+                     "RAW_STRING_LIT", "INTERPRETED_STRING_LIT", "WS",
+                     "COMMENT", "TERMINATOR", "LINE_COMMENT", "WS_NLSEMI",
+                     "COMMENT_NLSEMI", "LINE_COMMENT_NLSEMI"]
 
     RULE_sourceFile = 0
     RULE_packageClause = 1
@@ -630,198 +630,186 @@ class GoParser ( Parser ):
     RULE_receiverType = 97
     RULE_eoss = 98
 
-    ruleNames =  [ "sourceFile", "packageClause", "importDecl", "importSpec", 
-                   "importPath", "declaration", "constDecl", "constSpec", 
-                   "identifierList", "expressionList", "typeDecl", "typeSpec", 
-                   "functionDecl", "methodDecl", "receiver", "varDecl", 
-                   "varSpec", "block", "statementList", "statement", "simpleStmt", 
-                   "expressionStmt", "sendStmt", "incDecStmt", "assignment", 
-                   "assign_op", "shortVarDecl", "emptyStmt", "labeledStmt", 
-                   "returnStmt", "breakStmt", "continueStmt", "gotoStmt", 
-                   "fallthroughStmt", "deferStmt", "ifStmt", "switchStmt", 
-                   "exprSwitchStmt", "exprCaseClause", "exprSwitchCase", 
-                   "typeSwitchStmt", "typeSwitchGuard", "typeCaseClause", 
-                   "typeSwitchCase", "typeList", "selectStmt", "commClause", 
-                   "commCase", "recvStmt", "forStmt", "forClause", "rangeClause", 
-                   "goStmt", "type_", "typeName", "typeLit", "arrayType", 
-                   "arrayLength", "elementType", "pointerType", "interfaceType", 
-                   "sliceType", "mapType", "channelType", "methodSpec", 
-                   "functionType", "signature", "result", "parameters", 
-                   "parameterDecl", "expression", "primaryExpr", "conversion", 
-                   "nonNamedType", "operand", "literal", "basicLit", "integer", 
-                   "operandName", "qualifiedIdent", "compositeLit", "literalType", 
-                   "literalValue", "elementList", "keyedElement", "key", 
-                   "element", "structType", "fieldDecl", "string_", "embeddedField", 
-                   "functionLit", "index", "slice_", "typeAssertion", "arguments", 
-                   "methodExpr", "receiverType", "eoss" ]
+    ruleNames = ["sourceFile", "packageClause", "importDecl", "importSpec",
+                 "importPath", "declaration", "constDecl", "constSpec",
+                 "identifierList", "expressionList", "typeDecl", "typeSpec",
+                 "functionDecl", "methodDecl", "receiver", "varDecl",
+                 "varSpec", "block", "statementList", "statement", "simpleStmt",
+                 "expressionStmt", "sendStmt", "incDecStmt", "assignment",
+                 "assign_op", "shortVarDecl", "emptyStmt", "labeledStmt",
+                 "returnStmt", "breakStmt", "continueStmt", "gotoStmt",
+                 "fallthroughStmt", "deferStmt", "ifStmt", "switchStmt",
+                 "exprSwitchStmt", "exprCaseClause", "exprSwitchCase",
+                 "typeSwitchStmt", "typeSwitchGuard", "typeCaseClause",
+                 "typeSwitchCase", "typeList", "selectStmt", "commClause",
+                 "commCase", "recvStmt", "forStmt", "forClause", "rangeClause",
+                 "goStmt", "type_", "typeName", "typeLit", "arrayType",
+                 "arrayLength", "elementType", "pointerType", "interfaceType",
+                 "sliceType", "mapType", "channelType", "methodSpec",
+                 "functionType", "signature", "result", "parameters",
+                 "parameterDecl", "expression", "primaryExpr", "conversion",
+                 "nonNamedType", "operand", "literal", "basicLit", "integer",
+                 "operandName", "qualifiedIdent", "compositeLit", "literalType",
+                 "literalValue", "elementList", "keyedElement", "key",
+                 "element", "structType", "fieldDecl", "string_", "embeddedField",
+                 "functionLit", "index", "slice_", "typeAssertion", "arguments",
+                 "methodExpr", "receiverType", "eoss"]
 
     EOF = Token.EOF
-    BREAK=1
-    DEFAULT=2
-    FUNC=3
-    INTERFACE=4
-    SELECT=5
-    CASE=6
-    DEFER=7
-    GO=8
-    MAP=9
-    STRUCT=10
-    CHAN=11
-    ELSE=12
-    GOTO=13
-    PACKAGE=14
-    SWITCH=15
-    CONST=16
-    FALLTHROUGH=17
-    IF=18
-    RANGE=19
-    TYPE=20
-    CONTINUE=21
-    FOR=22
-    IMPORT=23
-    RETURN=24
-    VAR=25
-    NIL_LIT=26
-    IDENTIFIER=27
-    L_PAREN=28
-    R_PAREN=29
-    L_CURLY=30
-    R_CURLY=31
-    L_BRACKET=32
-    R_BRACKET=33
-    ASSIGN=34
-    COMMA=35
-    SEMI=36
-    HUANHANG=37
-    HUANHANGG=38
-    COLON=39
-    DOT=40
-    PLUS_PLUS=41
-    MINUS_MINUS=42
-    DECLARE_ASSIGN=43
-    ELLIPSIS=44
-    EOSSS=45
-    LOGICAL_OR=46
-    LOGICAL_AND=47
-    EQUALS=48
-    NOT_EQUALS=49
-    LESS=50
-    LESS_OR_EQUALS=51
-    GREATER=52
-    GREATER_OR_EQUALS=53
-    OR=54
-    DIV=55
-    MOD=56
-    LSHIFT=57
-    RSHIFT=58
-    BIT_CLEAR=59
-    EXCLAMATION=60
-    PLUS=61
-    MINUS=62
-    CARET=63
-    STAR=64
-    AMPERSAND=65
-    RECEIVE=66
-    DECIMAL_LIT=67
-    BINARY_LIT=68
-    OCTAL_LIT=69
-    HEX_LIT=70
-    FLOAT_LIT=71
-    DECIMAL_FLOAT_LIT=72
-    HEX_FLOAT_LIT=73
-    IMAGINARY_LIT=74
-    RUNE_LIT=75
-    BYTE_VALUE=76
-    OCTAL_BYTE_VALUE=77
-    HEX_BYTE_VALUE=78
-    LITTLE_U_VALUE=79
-    BIG_U_VALUE=80
-    RAW_STRING_LIT=81
-    INTERPRETED_STRING_LIT=82
-    WS=83
-    COMMENT=84
-    TERMINATOR=85
-    LINE_COMMENT=86
-    WS_NLSEMI=87
-    COMMENT_NLSEMI=88
-    LINE_COMMENT_NLSEMI=89
+    BREAK = 1
+    DEFAULT = 2
+    FUNC = 3
+    INTERFACE = 4
+    SELECT = 5
+    CASE = 6
+    DEFER = 7
+    GO = 8
+    MAP = 9
+    STRUCT = 10
+    CHAN = 11
+    ELSE = 12
+    GOTO = 13
+    PACKAGE = 14
+    SWITCH = 15
+    CONST = 16
+    FALLTHROUGH = 17
+    IF = 18
+    RANGE = 19
+    TYPE = 20
+    CONTINUE = 21
+    FOR = 22
+    IMPORT = 23
+    RETURN = 24
+    VAR = 25
+    NIL_LIT = 26
+    IDENTIFIER = 27
+    L_PAREN = 28
+    R_PAREN = 29
+    L_CURLY = 30
+    R_CURLY = 31
+    L_BRACKET = 32
+    R_BRACKET = 33
+    ASSIGN = 34
+    COMMA = 35
+    SEMI = 36
+    HUANHANG = 37
+    HUANHANGG = 38
+    COLON = 39
+    DOT = 40
+    PLUS_PLUS = 41
+    MINUS_MINUS = 42
+    DECLARE_ASSIGN = 43
+    ELLIPSIS = 44
+    EOSSS = 45
+    LOGICAL_OR = 46
+    LOGICAL_AND = 47
+    EQUALS = 48
+    NOT_EQUALS = 49
+    LESS = 50
+    LESS_OR_EQUALS = 51
+    GREATER = 52
+    GREATER_OR_EQUALS = 53
+    OR = 54
+    DIV = 55
+    MOD = 56
+    LSHIFT = 57
+    RSHIFT = 58
+    BIT_CLEAR = 59
+    EXCLAMATION = 60
+    PLUS = 61
+    MINUS = 62
+    CARET = 63
+    STAR = 64
+    AMPERSAND = 65
+    RECEIVE = 66
+    DECIMAL_LIT = 67
+    BINARY_LIT = 68
+    OCTAL_LIT = 69
+    HEX_LIT = 70
+    FLOAT_LIT = 71
+    DECIMAL_FLOAT_LIT = 72
+    HEX_FLOAT_LIT = 73
+    IMAGINARY_LIT = 74
+    RUNE_LIT = 75
+    BYTE_VALUE = 76
+    OCTAL_BYTE_VALUE = 77
+    HEX_BYTE_VALUE = 78
+    LITTLE_U_VALUE = 79
+    BIG_U_VALUE = 80
+    RAW_STRING_LIT = 81
+    INTERPRETED_STRING_LIT = 82
+    WS = 83
+    COMMENT = 84
+    TERMINATOR = 85
+    LINE_COMMENT = 86
+    WS_NLSEMI = 87
+    COMMENT_NLSEMI = 88
+    LINE_COMMENT_NLSEMI = 89
 
-    def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
+    def __init__(self, input: TokenStream, output: TextIO = sys.stdout):
         super().__init__(input, output)
         self.checkVersion("4.8")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
-
-
-
     class SourceFileContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def packageClause(self):
-            return self.getTypedRuleContext(GoParser.PackageClauseContext,0)
-
+            return self.getTypedRuleContext(GoParser.PackageClauseContext, 0)
 
         def EOF(self):
             return self.getToken(GoParser.EOF, 0)
 
-        def eoss(self, i:int=None):
+        def eoss(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.EossContext)
             else:
-                return self.getTypedRuleContext(GoParser.EossContext,i)
+                return self.getTypedRuleContext(GoParser.EossContext, i)
 
-
-        def importDecl(self, i:int=None):
+        def importDecl(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ImportDeclContext)
             else:
-                return self.getTypedRuleContext(GoParser.ImportDeclContext,i)
+                return self.getTypedRuleContext(GoParser.ImportDeclContext, i)
 
-
-        def functionDecl(self, i:int=None):
+        def functionDecl(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.FunctionDeclContext)
             else:
-                return self.getTypedRuleContext(GoParser.FunctionDeclContext,i)
+                return self.getTypedRuleContext(GoParser.FunctionDeclContext, i)
 
-
-        def methodDecl(self, i:int=None):
+        def methodDecl(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.MethodDeclContext)
             else:
-                return self.getTypedRuleContext(GoParser.MethodDeclContext,i)
+                return self.getTypedRuleContext(GoParser.MethodDeclContext, i)
 
-
-        def declaration(self, i:int=None):
+        def declaration(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.DeclarationContext)
             else:
-                return self.getTypedRuleContext(GoParser.DeclarationContext,i)
-
+                return self.getTypedRuleContext(GoParser.DeclarationContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_sourceFile
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSourceFile" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterSourceFile"):
                 listener.enterSourceFile(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSourceFile" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitSourceFile"):
                 listener.exitSourceFile(self)
-
-
-
 
     def sourceFile(self):
 
         localctx = GoParser.SourceFileContext(self, self._ctx, self.state)
         self.enterRule(localctx, 0, self.RULE_sourceFile)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 198
@@ -829,7 +817,9 @@ class GoParser ( Parser ):
             self.state = 202
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (1 << GoParser.EOSSS))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (
+                    1 << GoParser.EOSSS))) != 0):
                 self.state = 199
                 self.eoss()
                 self.state = 204
@@ -839,13 +829,15 @@ class GoParser ( Parser ):
             self.state = 214
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==GoParser.IMPORT:
+            while _la == GoParser.IMPORT:
                 self.state = 205
                 self.importDecl()
                 self.state = 209
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (1 << GoParser.EOSSS))) != 0):
+                while (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                        (1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (
+                        1 << GoParser.EOSSS))) != 0):
                     self.state = 206
                     self.eoss()
                     self.state = 211
@@ -859,10 +851,11 @@ class GoParser ( Parser ):
             self.state = 230
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.CONST) | (1 << GoParser.TYPE) | (1 << GoParser.VAR))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.FUNC) | (1 << GoParser.CONST) | (1 << GoParser.TYPE) | (1 << GoParser.VAR))) != 0):
                 self.state = 220
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input, 3, self._ctx)
                 if la_ == 1:
                     self.state = 217
                     self.functionDecl()
@@ -878,11 +871,12 @@ class GoParser ( Parser ):
                     self.declaration()
                     pass
 
-
                 self.state = 225
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (1 << GoParser.EOSSS))) != 0):
+                while (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                        (1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (
+                        1 << GoParser.EOSSS))) != 0):
                     self.state = 222
                     self.eoss()
                     self.state = 227
@@ -903,13 +897,12 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class PackageClauseContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
-            self.packageName = None # Token
+            self.packageName = None  # Token
 
         def PACKAGE(self):
             return self.getToken(GoParser.PACKAGE, 0)
@@ -920,16 +913,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_packageClause
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterPackageClause" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterPackageClause"):
                 listener.enterPackageClause(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitPackageClause" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitPackageClause"):
                 listener.exitPackageClause(self)
-
-
-
 
     def packageClause(self):
 
@@ -949,22 +939,20 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ImportDeclContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def IMPORT(self):
             return self.getToken(GoParser.IMPORT, 0)
 
-        def importSpec(self, i:int=None):
+        def importSpec(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ImportSpecContext)
             else:
-                return self.getTypedRuleContext(GoParser.ImportSpecContext,i)
-
+                return self.getTypedRuleContext(GoParser.ImportSpecContext, i)
 
         def L_PAREN(self):
             return self.getToken(GoParser.L_PAREN, 0)
@@ -972,32 +960,28 @@ class GoParser ( Parser ):
         def R_PAREN(self):
             return self.getToken(GoParser.R_PAREN, 0)
 
-        def eoss(self, i:int=None):
+        def eoss(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.EossContext)
             else:
-                return self.getTypedRuleContext(GoParser.EossContext,i)
-
+                return self.getTypedRuleContext(GoParser.EossContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_importDecl
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterImportDecl" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterImportDecl"):
                 listener.enterImportDecl(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitImportDecl" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitImportDecl"):
                 listener.exitImportDecl(self)
-
-
-
 
     def importDecl(self):
 
         localctx = GoParser.ImportDeclContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_importDecl)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 238
@@ -1015,7 +999,9 @@ class GoParser ( Parser ):
                 self.state = 246
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                while ((((_la - 27)) & ~0x3f) == 0 and ((1 << (_la - 27)) & ((1 << (GoParser.IDENTIFIER - 27)) | (1 << (GoParser.DOT - 27)) | (1 << (GoParser.RAW_STRING_LIT - 27)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 27)))) != 0):
+                while ((((_la - 27)) & ~0x3f) == 0 and ((1 << (_la - 27)) & (
+                        (1 << (GoParser.IDENTIFIER - 27)) | (1 << (GoParser.DOT - 27)) | (
+                        1 << (GoParser.RAW_STRING_LIT - 27)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 27)))) != 0):
                     self.state = 241
                     self.importSpec()
                     self.state = 242
@@ -1038,17 +1024,15 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ImportSpecContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
-            self.alias = None # Token
+            self.alias = None  # Token
 
         def importPath(self):
-            return self.getTypedRuleContext(GoParser.ImportPathContext,0)
-
+            return self.getTypedRuleContext(GoParser.ImportPathContext, 0)
 
         def DOT(self):
             return self.getToken(GoParser.DOT, 0)
@@ -1059,37 +1043,33 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_importSpec
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterImportSpec" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterImportSpec"):
                 listener.enterImportSpec(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitImportSpec" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitImportSpec"):
                 listener.exitImportSpec(self)
-
-
-
 
     def importSpec(self):
 
         localctx = GoParser.ImportSpecContext(self, self._ctx, self.state)
         self.enterRule(localctx, 6, self.RULE_importSpec)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 253
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.IDENTIFIER or _la==GoParser.DOT:
+            if _la == GoParser.IDENTIFIER or _la == GoParser.DOT:
                 self.state = 252
                 localctx.alias = self._input.LT(1)
                 _la = self._input.LA(1)
-                if not(_la==GoParser.IDENTIFIER or _la==GoParser.DOT):
+                if not (_la == GoParser.IDENTIFIER or _la == GoParser.DOT):
                     localctx.alias = self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-
 
             self.state = 255
             self.importPath()
@@ -1101,30 +1081,25 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ImportPathContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def string_(self):
-            return self.getTypedRuleContext(GoParser.String_Context,0)
-
+            return self.getTypedRuleContext(GoParser.String_Context, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_importPath
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterImportPath" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterImportPath"):
                 listener.enterImportPath(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitImportPath" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitImportPath"):
                 listener.exitImportPath(self)
-
-
-
 
     def importPath(self):
 
@@ -1142,38 +1117,31 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class DeclarationContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def constDecl(self):
-            return self.getTypedRuleContext(GoParser.ConstDeclContext,0)
-
+            return self.getTypedRuleContext(GoParser.ConstDeclContext, 0)
 
         def typeDecl(self):
-            return self.getTypedRuleContext(GoParser.TypeDeclContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeDeclContext, 0)
 
         def varDecl(self):
-            return self.getTypedRuleContext(GoParser.VarDeclContext,0)
-
+            return self.getTypedRuleContext(GoParser.VarDeclContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_declaration
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterDeclaration" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterDeclaration"):
                 listener.enterDeclaration(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitDeclaration" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitDeclaration"):
                 listener.exitDeclaration(self)
-
-
-
 
     def declaration(self):
 
@@ -1209,22 +1177,20 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ConstDeclContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def CONST(self):
             return self.getToken(GoParser.CONST, 0)
 
-        def constSpec(self, i:int=None):
+        def constSpec(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ConstSpecContext)
             else:
-                return self.getTypedRuleContext(GoParser.ConstSpecContext,i)
-
+                return self.getTypedRuleContext(GoParser.ConstSpecContext, i)
 
         def L_PAREN(self):
             return self.getToken(GoParser.L_PAREN, 0)
@@ -1232,32 +1198,28 @@ class GoParser ( Parser ):
         def R_PAREN(self):
             return self.getToken(GoParser.R_PAREN, 0)
 
-        def eoss(self, i:int=None):
+        def eoss(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.EossContext)
             else:
-                return self.getTypedRuleContext(GoParser.EossContext,i)
-
+                return self.getTypedRuleContext(GoParser.EossContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_constDecl
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterConstDecl" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterConstDecl"):
                 listener.enterConstDecl(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitConstDecl" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitConstDecl"):
                 listener.exitConstDecl(self)
-
-
-
 
     def constDecl(self):
 
         localctx = GoParser.ConstDeclContext(self, self._ctx, self.state)
         self.enterRule(localctx, 12, self.RULE_constDecl)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 264
@@ -1275,7 +1237,7 @@ class GoParser ( Parser ):
                 self.state = 272
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                while _la==GoParser.IDENTIFIER:
+                while _la == GoParser.IDENTIFIER:
                     self.state = 267
                     self.constSpec()
                     self.state = 268
@@ -1298,62 +1260,58 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ConstSpecContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def identifierList(self):
-            return self.getTypedRuleContext(GoParser.IdentifierListContext,0)
-
+            return self.getTypedRuleContext(GoParser.IdentifierListContext, 0)
 
         def ASSIGN(self):
             return self.getToken(GoParser.ASSIGN, 0)
 
         def expressionList(self):
-            return self.getTypedRuleContext(GoParser.ExpressionListContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionListContext, 0)
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_constSpec
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterConstSpec" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterConstSpec"):
                 listener.enterConstSpec(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitConstSpec" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitConstSpec"):
                 listener.exitConstSpec(self)
-
-
-
 
     def constSpec(self):
 
         localctx = GoParser.ConstSpecContext(self, self._ctx, self.state)
         self.enterRule(localctx, 14, self.RULE_constSpec)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 278
             self.identifierList()
             self.state = 284
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,13,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 13, self._ctx)
             if la_ == 1:
                 self.state = 280
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if ((((_la - 3)) & ~0x3f) == 0 and ((1 << (_la - 3)) & ((1 << (GoParser.FUNC - 3)) | (1 << (GoParser.INTERFACE - 3)) | (1 << (GoParser.MAP - 3)) | (1 << (GoParser.STRUCT - 3)) | (1 << (GoParser.CHAN - 3)) | (1 << (GoParser.IDENTIFIER - 3)) | (1 << (GoParser.L_PAREN - 3)) | (1 << (GoParser.L_BRACKET - 3)) | (1 << (GoParser.STAR - 3)) | (1 << (GoParser.RECEIVE - 3)))) != 0):
+                if ((((_la - 3)) & ~0x3f) == 0 and ((1 << (_la - 3)) & (
+                        (1 << (GoParser.FUNC - 3)) | (1 << (GoParser.INTERFACE - 3)) | (1 << (GoParser.MAP - 3)) | (
+                        1 << (GoParser.STRUCT - 3)) | (1 << (GoParser.CHAN - 3)) | (1 << (GoParser.IDENTIFIER - 3)) | (
+                                1 << (GoParser.L_PAREN - 3)) | (1 << (GoParser.L_BRACKET - 3)) | (
+                                1 << (GoParser.STAR - 3)) | (1 << (GoParser.RECEIVE - 3)))) != 0):
                     self.state = 279
                     self.type_()
-
 
                 self.state = 282
                 self.match(GoParser.ASSIGN)
@@ -1369,20 +1327,19 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class IdentifierListContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def IDENTIFIER(self, i:int=None):
+        def IDENTIFIER(self, i: int = None):
             if i is None:
                 return self.getTokens(GoParser.IDENTIFIER)
             else:
                 return self.getToken(GoParser.IDENTIFIER, i)
 
-        def COMMA(self, i:int=None):
+        def COMMA(self, i: int = None):
             if i is None:
                 return self.getTokens(GoParser.COMMA)
             else:
@@ -1391,22 +1348,19 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_identifierList
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterIdentifierList" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterIdentifierList"):
                 listener.enterIdentifierList(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitIdentifierList" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitIdentifierList"):
                 listener.exitIdentifierList(self)
-
-
-
 
     def identifierList(self):
 
         localctx = GoParser.IdentifierListContext(self, self._ctx, self.state)
         self.enterRule(localctx, 16, self.RULE_identifierList)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 286
@@ -1414,7 +1368,7 @@ class GoParser ( Parser ):
             self.state = 291
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==GoParser.COMMA:
+            while _la == GoParser.COMMA:
                 self.state = 287
                 self.match(GoParser.COMMA)
                 self.state = 288
@@ -1431,21 +1385,19 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ExpressionListContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def expression(self, i:int=None):
+        def expression(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ExpressionContext)
             else:
-                return self.getTypedRuleContext(GoParser.ExpressionContext,i)
+                return self.getTypedRuleContext(GoParser.ExpressionContext, i)
 
-
-        def COMMA(self, i:int=None):
+        def COMMA(self, i: int = None):
             if i is None:
                 return self.getTokens(GoParser.COMMA)
             else:
@@ -1454,16 +1406,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_expressionList
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExpressionList" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterExpressionList"):
                 listener.enterExpressionList(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExpressionList" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitExpressionList"):
                 listener.exitExpressionList(self)
-
-
-
 
     def expressionList(self):
 
@@ -1475,16 +1424,16 @@ class GoParser ( Parser ):
             self.expression(0)
             self.state = 299
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,15,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 15, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 295
                     self.match(GoParser.COMMA)
                     self.state = 296
-                    self.expression(0) 
+                    self.expression(0)
                 self.state = 301
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,15,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 15, self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1494,22 +1443,20 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TypeDeclContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def TYPE(self):
             return self.getToken(GoParser.TYPE, 0)
 
-        def typeSpec(self, i:int=None):
+        def typeSpec(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.TypeSpecContext)
             else:
-                return self.getTypedRuleContext(GoParser.TypeSpecContext,i)
-
+                return self.getTypedRuleContext(GoParser.TypeSpecContext, i)
 
         def L_PAREN(self):
             return self.getToken(GoParser.L_PAREN, 0)
@@ -1517,32 +1464,28 @@ class GoParser ( Parser ):
         def R_PAREN(self):
             return self.getToken(GoParser.R_PAREN, 0)
 
-        def eoss(self, i:int=None):
+        def eoss(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.EossContext)
             else:
-                return self.getTypedRuleContext(GoParser.EossContext,i)
-
+                return self.getTypedRuleContext(GoParser.EossContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_typeDecl
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTypeDecl" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTypeDecl"):
                 listener.enterTypeDecl(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTypeDecl" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTypeDecl"):
                 listener.exitTypeDecl(self)
-
-
-
 
     def typeDecl(self):
 
         localctx = GoParser.TypeDeclContext(self, self._ctx, self.state)
         self.enterRule(localctx, 20, self.RULE_typeDecl)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 302
@@ -1560,7 +1503,7 @@ class GoParser ( Parser ):
                 self.state = 310
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                while _la==GoParser.IDENTIFIER:
+                while _la == GoParser.IDENTIFIER:
                     self.state = 305
                     self.typeSpec()
                     self.state = 306
@@ -1583,10 +1526,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TypeSpecContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1594,8 +1536,7 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.IDENTIFIER, 0)
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def ASSIGN(self):
             return self.getToken(GoParser.ASSIGN, 0)
@@ -1603,22 +1544,19 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_typeSpec
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTypeSpec" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTypeSpec"):
                 listener.enterTypeSpec(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTypeSpec" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTypeSpec"):
                 listener.exitTypeSpec(self)
-
-
-
 
     def typeSpec(self):
 
         localctx = GoParser.TypeSpecContext(self, self._ctx, self.state)
         self.enterRule(localctx, 22, self.RULE_typeSpec)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 316
@@ -1626,10 +1564,9 @@ class GoParser ( Parser ):
             self.state = 318
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.ASSIGN:
+            if _la == GoParser.ASSIGN:
                 self.state = 317
                 self.match(GoParser.ASSIGN)
-
 
             self.state = 320
             self.type_()
@@ -1641,10 +1578,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class FunctionDeclContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1655,32 +1591,27 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.IDENTIFIER, 0)
 
         def signature(self):
-            return self.getTypedRuleContext(GoParser.SignatureContext,0)
-
+            return self.getTypedRuleContext(GoParser.SignatureContext, 0)
 
         def block(self):
-            return self.getTypedRuleContext(GoParser.BlockContext,0)
-
+            return self.getTypedRuleContext(GoParser.BlockContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_functionDecl
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFunctionDecl" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterFunctionDecl"):
                 listener.enterFunctionDecl(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFunctionDecl" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitFunctionDecl"):
                 listener.exitFunctionDecl(self)
-
-
-
 
     def functionDecl(self):
 
         localctx = GoParser.FunctionDeclContext(self, self._ctx, self.state)
         self.enterRule(localctx, 24, self.RULE_functionDecl)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 322
@@ -1693,7 +1624,7 @@ class GoParser ( Parser ):
             self.state = 326
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.L_CURLY:
+            if _la == GoParser.L_CURLY:
                 self.state = 325
                 self.block()
 
@@ -1706,10 +1637,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class MethodDeclContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1717,39 +1647,33 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.FUNC, 0)
 
         def receiver(self):
-            return self.getTypedRuleContext(GoParser.ReceiverContext,0)
-
+            return self.getTypedRuleContext(GoParser.ReceiverContext, 0)
 
         def IDENTIFIER(self):
             return self.getToken(GoParser.IDENTIFIER, 0)
 
         def signature(self):
-            return self.getTypedRuleContext(GoParser.SignatureContext,0)
-
+            return self.getTypedRuleContext(GoParser.SignatureContext, 0)
 
         def block(self):
-            return self.getTypedRuleContext(GoParser.BlockContext,0)
-
+            return self.getTypedRuleContext(GoParser.BlockContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_methodDecl
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterMethodDecl" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterMethodDecl"):
                 listener.enterMethodDecl(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitMethodDecl" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitMethodDecl"):
                 listener.exitMethodDecl(self)
-
-
-
 
     def methodDecl(self):
 
         localctx = GoParser.MethodDeclContext(self, self._ctx, self.state)
         self.enterRule(localctx, 26, self.RULE_methodDecl)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 328
@@ -1764,7 +1688,7 @@ class GoParser ( Parser ):
             self.state = 333
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.L_CURLY:
+            if _la == GoParser.L_CURLY:
                 self.state = 332
                 self.block()
 
@@ -1777,30 +1701,25 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ReceiverContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def parameters(self):
-            return self.getTypedRuleContext(GoParser.ParametersContext,0)
-
+            return self.getTypedRuleContext(GoParser.ParametersContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_receiver
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterReceiver" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterReceiver"):
                 listener.enterReceiver(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitReceiver" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitReceiver"):
                 listener.exitReceiver(self)
-
-
-
 
     def receiver(self):
 
@@ -1818,22 +1737,20 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class VarDeclContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def VAR(self):
             return self.getToken(GoParser.VAR, 0)
 
-        def varSpec(self, i:int=None):
+        def varSpec(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.VarSpecContext)
             else:
-                return self.getTypedRuleContext(GoParser.VarSpecContext,i)
-
+                return self.getTypedRuleContext(GoParser.VarSpecContext, i)
 
         def L_PAREN(self):
             return self.getToken(GoParser.L_PAREN, 0)
@@ -1841,32 +1758,28 @@ class GoParser ( Parser ):
         def R_PAREN(self):
             return self.getToken(GoParser.R_PAREN, 0)
 
-        def eoss(self, i:int=None):
+        def eoss(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.EossContext)
             else:
-                return self.getTypedRuleContext(GoParser.EossContext,i)
-
+                return self.getTypedRuleContext(GoParser.EossContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_varDecl
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterVarDecl" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterVarDecl"):
                 listener.enterVarDecl(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitVarDecl" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitVarDecl"):
                 listener.exitVarDecl(self)
-
-
-
 
     def varDecl(self):
 
         localctx = GoParser.VarDeclContext(self, self._ctx, self.state)
         self.enterRule(localctx, 30, self.RULE_varDecl)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 337
@@ -1884,7 +1797,7 @@ class GoParser ( Parser ):
                 self.state = 345
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                while _la==GoParser.IDENTIFIER:
+                while _la == GoParser.IDENTIFIER:
                     self.state = 340
                     self.varSpec()
                     self.state = 341
@@ -1907,47 +1820,40 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class VarSpecContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def identifierList(self):
-            return self.getTypedRuleContext(GoParser.IdentifierListContext,0)
-
+            return self.getTypedRuleContext(GoParser.IdentifierListContext, 0)
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def ASSIGN(self):
             return self.getToken(GoParser.ASSIGN, 0)
 
         def expressionList(self):
-            return self.getTypedRuleContext(GoParser.ExpressionListContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionListContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_varSpec
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterVarSpec" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterVarSpec"):
                 listener.enterVarSpec(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitVarSpec" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitVarSpec"):
                 listener.exitVarSpec(self)
-
-
-
 
     def varSpec(self):
 
         localctx = GoParser.VarSpecContext(self, self._ctx, self.state)
         self.enterRule(localctx, 32, self.RULE_varSpec)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 351
@@ -1955,18 +1861,18 @@ class GoParser ( Parser ):
             self.state = 359
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN, GoParser.IDENTIFIER, GoParser.L_PAREN, GoParser.L_BRACKET, GoParser.STAR, GoParser.RECEIVE]:
+            if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN,
+                         GoParser.IDENTIFIER, GoParser.L_PAREN, GoParser.L_BRACKET, GoParser.STAR, GoParser.RECEIVE]:
                 self.state = 352
                 self.type_()
                 self.state = 355
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==GoParser.ASSIGN:
+                if _la == GoParser.ASSIGN:
                     self.state = 353
                     self.match(GoParser.ASSIGN)
                     self.state = 354
                     self.expressionList()
-
 
                 pass
             elif token in [GoParser.ASSIGN]:
@@ -1986,10 +1892,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class BlockContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -1999,36 +1904,31 @@ class GoParser ( Parser ):
         def R_CURLY(self):
             return self.getToken(GoParser.R_CURLY, 0)
 
-        def eoss(self, i:int=None):
+        def eoss(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.EossContext)
             else:
-                return self.getTypedRuleContext(GoParser.EossContext,i)
-
+                return self.getTypedRuleContext(GoParser.EossContext, i)
 
         def statementList(self):
-            return self.getTypedRuleContext(GoParser.StatementListContext,0)
-
+            return self.getTypedRuleContext(GoParser.StatementListContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_block
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterBlock" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterBlock"):
                 listener.enterBlock(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitBlock" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitBlock"):
                 listener.exitBlock(self)
-
-
-
 
     def block(self):
 
         localctx = GoParser.BlockContext(self, self._ctx, self.state)
         self.enterRule(localctx, 34, self.RULE_block)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 361
@@ -2036,7 +1936,9 @@ class GoParser ( Parser ):
             self.state = 365
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (1 << GoParser.EOSSS))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (
+                    1 << GoParser.EOSSS))) != 0):
                 self.state = 362
                 self.eoss()
                 self.state = 367
@@ -2046,10 +1948,25 @@ class GoParser ( Parser ):
             self.state = 369
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (
+                    1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (
+                            1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (
+                            1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (
+                            1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (
+                            1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (
+                            1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (
+                            1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                            1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                    (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 368
                 self.statementList()
-
 
             self.state = 371
             self.match(GoParser.R_CURLY)
@@ -2061,70 +1978,83 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class StatementListContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def statement(self, i:int=None):
+        def statement(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.StatementContext)
             else:
-                return self.getTypedRuleContext(GoParser.StatementContext,i)
+                return self.getTypedRuleContext(GoParser.StatementContext, i)
 
-
-        def eoss(self, i:int=None):
+        def eoss(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.EossContext)
             else:
-                return self.getTypedRuleContext(GoParser.EossContext,i)
-
+                return self.getTypedRuleContext(GoParser.EossContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_statementList
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterStatementList" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterStatementList"):
                 listener.enterStatementList(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitStatementList" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitStatementList"):
                 listener.exitStatementList(self)
-
-
-
 
     def statementList(self):
 
         localctx = GoParser.StatementListContext(self, self._ctx, self.state)
         self.enterRule(localctx, 36, self.RULE_statementList)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 379 
+            self.state = 379
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 373
                 self.statement()
-                self.state = 375 
+                self.state = 375
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while True:
                     self.state = 374
                     self.eoss()
-                    self.state = 377 
+                    self.state = 377
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
-                    if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (1 << GoParser.EOSSS))) != 0)):
+                    if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                            (1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (
+                            1 << GoParser.EOSSS))) != 0)):
                         break
 
-                self.state = 381 
+                self.state = 381
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                        (1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (
+                        1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (
+                                1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (
+                                1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (
+                                1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (
+                                1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (
+                                1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (
+                                1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                                1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                                (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                                (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (
+                                1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (
+                                        1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (
+                                        1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (
+                                        1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (
+                                        1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                                        1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0)):
                     break
 
         except RecognitionException as re:
@@ -2135,86 +2065,67 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class StatementContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def declaration(self):
-            return self.getTypedRuleContext(GoParser.DeclarationContext,0)
-
+            return self.getTypedRuleContext(GoParser.DeclarationContext, 0)
 
         def labeledStmt(self):
-            return self.getTypedRuleContext(GoParser.LabeledStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.LabeledStmtContext, 0)
 
         def simpleStmt(self):
-            return self.getTypedRuleContext(GoParser.SimpleStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.SimpleStmtContext, 0)
 
         def goStmt(self):
-            return self.getTypedRuleContext(GoParser.GoStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.GoStmtContext, 0)
 
         def returnStmt(self):
-            return self.getTypedRuleContext(GoParser.ReturnStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.ReturnStmtContext, 0)
 
         def breakStmt(self):
-            return self.getTypedRuleContext(GoParser.BreakStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.BreakStmtContext, 0)
 
         def continueStmt(self):
-            return self.getTypedRuleContext(GoParser.ContinueStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.ContinueStmtContext, 0)
 
         def gotoStmt(self):
-            return self.getTypedRuleContext(GoParser.GotoStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.GotoStmtContext, 0)
 
         def fallthroughStmt(self):
-            return self.getTypedRuleContext(GoParser.FallthroughStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.FallthroughStmtContext, 0)
 
         def block(self):
-            return self.getTypedRuleContext(GoParser.BlockContext,0)
-
+            return self.getTypedRuleContext(GoParser.BlockContext, 0)
 
         def ifStmt(self):
-            return self.getTypedRuleContext(GoParser.IfStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.IfStmtContext, 0)
 
         def switchStmt(self):
-            return self.getTypedRuleContext(GoParser.SwitchStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.SwitchStmtContext, 0)
 
         def selectStmt(self):
-            return self.getTypedRuleContext(GoParser.SelectStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.SelectStmtContext, 0)
 
         def forStmt(self):
-            return self.getTypedRuleContext(GoParser.ForStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.ForStmtContext, 0)
 
         def deferStmt(self):
-            return self.getTypedRuleContext(GoParser.DeferStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.DeferStmtContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_statement
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterStatement" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterStatement"):
                 listener.enterStatement(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitStatement" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitStatement"):
                 listener.exitStatement(self)
-
-
-
 
     def statement(self):
 
@@ -2223,7 +2134,7 @@ class GoParser ( Parser ):
         try:
             self.state = 398
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,29,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 29, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 383
@@ -2323,46 +2234,37 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class SimpleStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def sendStmt(self):
-            return self.getTypedRuleContext(GoParser.SendStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.SendStmtContext, 0)
 
         def incDecStmt(self):
-            return self.getTypedRuleContext(GoParser.IncDecStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.IncDecStmtContext, 0)
 
         def assignment(self):
-            return self.getTypedRuleContext(GoParser.AssignmentContext,0)
-
+            return self.getTypedRuleContext(GoParser.AssignmentContext, 0)
 
         def expressionStmt(self):
-            return self.getTypedRuleContext(GoParser.ExpressionStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionStmtContext, 0)
 
         def shortVarDecl(self):
-            return self.getTypedRuleContext(GoParser.ShortVarDeclContext,0)
-
+            return self.getTypedRuleContext(GoParser.ShortVarDeclContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_simpleStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSimpleStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterSimpleStmt"):
                 listener.enterSimpleStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSimpleStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitSimpleStmt"):
                 listener.exitSimpleStmt(self)
-
-
-
 
     def simpleStmt(self):
 
@@ -2371,7 +2273,7 @@ class GoParser ( Parser ):
         try:
             self.state = 405
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,30,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 30, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 400
@@ -2411,30 +2313,25 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ExpressionStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_expressionStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExpressionStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterExpressionStmt"):
                 listener.enterExpressionStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExpressionStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitExpressionStmt"):
                 listener.exitExpressionStmt(self)
-
-
-
 
     def expressionStmt(self):
 
@@ -2452,37 +2349,32 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class SendStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
-            self.channel = None # ExpressionContext
+            self.channel = None  # ExpressionContext
 
         def RECEIVE(self):
             return self.getToken(GoParser.RECEIVE, 0)
 
-        def expression(self, i:int=None):
+        def expression(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ExpressionContext)
             else:
-                return self.getTypedRuleContext(GoParser.ExpressionContext,i)
-
+                return self.getTypedRuleContext(GoParser.ExpressionContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_sendStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSendStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterSendStmt"):
                 listener.enterSendStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSendStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitSendStmt"):
                 listener.exitSendStmt(self)
-
-
-
 
     def sendStmt(self):
 
@@ -2504,16 +2396,14 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class IncDecStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def PLUS_PLUS(self):
             return self.getToken(GoParser.PLUS_PLUS, 0)
@@ -2524,29 +2414,26 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_incDecStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterIncDecStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterIncDecStmt"):
                 listener.enterIncDecStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitIncDecStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitIncDecStmt"):
                 listener.exitIncDecStmt(self)
-
-
-
 
     def incDecStmt(self):
 
         localctx = GoParser.IncDecStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 46, self.RULE_incDecStmt)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 413
             self.expression(0)
             self.state = 414
             _la = self._input.LA(1)
-            if not(_la==GoParser.PLUS_PLUS or _la==GoParser.MINUS_MINUS):
+            if not (_la == GoParser.PLUS_PLUS or _la == GoParser.MINUS_MINUS):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2559,37 +2446,31 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class AssignmentContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def expressionList(self, i:int=None):
+        def expressionList(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ExpressionListContext)
             else:
-                return self.getTypedRuleContext(GoParser.ExpressionListContext,i)
-
+                return self.getTypedRuleContext(GoParser.ExpressionListContext, i)
 
         def assign_op(self):
-            return self.getTypedRuleContext(GoParser.Assign_opContext,0)
-
+            return self.getTypedRuleContext(GoParser.Assign_opContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_assignment
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterAssignment" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterAssignment"):
                 listener.enterAssignment(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitAssignment" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitAssignment"):
                 listener.exitAssignment(self)
-
-
-
 
     def assignment(self):
 
@@ -2611,10 +2492,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class Assign_opContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -2657,36 +2537,41 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_assign_op
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterAssign_op" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterAssign_op"):
                 listener.enterAssign_op(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitAssign_op" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitAssign_op"):
                 listener.exitAssign_op(self)
-
-
-
 
     def assign_op(self):
 
         localctx = GoParser.Assign_opContext(self, self._ctx, self.state)
         self.enterRule(localctx, 50, self.RULE_assign_op)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 421
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if ((((_la - 54)) & ~0x3f) == 0 and ((1 << (_la - 54)) & ((1 << (GoParser.OR - 54)) | (1 << (GoParser.DIV - 54)) | (1 << (GoParser.MOD - 54)) | (1 << (GoParser.LSHIFT - 54)) | (1 << (GoParser.RSHIFT - 54)) | (1 << (GoParser.BIT_CLEAR - 54)) | (1 << (GoParser.PLUS - 54)) | (1 << (GoParser.MINUS - 54)) | (1 << (GoParser.CARET - 54)) | (1 << (GoParser.STAR - 54)) | (1 << (GoParser.AMPERSAND - 54)))) != 0):
+            if ((((_la - 54)) & ~0x3f) == 0 and ((1 << (_la - 54)) & (
+                    (1 << (GoParser.OR - 54)) | (1 << (GoParser.DIV - 54)) | (1 << (GoParser.MOD - 54)) | (
+                    1 << (GoParser.LSHIFT - 54)) | (1 << (GoParser.RSHIFT - 54)) | (1 << (GoParser.BIT_CLEAR - 54)) | (
+                            1 << (GoParser.PLUS - 54)) | (1 << (GoParser.MINUS - 54)) | (1 << (GoParser.CARET - 54)) | (
+                            1 << (GoParser.STAR - 54)) | (1 << (GoParser.AMPERSAND - 54)))) != 0):
                 self.state = 420
                 _la = self._input.LA(1)
-                if not(((((_la - 54)) & ~0x3f) == 0 and ((1 << (_la - 54)) & ((1 << (GoParser.OR - 54)) | (1 << (GoParser.DIV - 54)) | (1 << (GoParser.MOD - 54)) | (1 << (GoParser.LSHIFT - 54)) | (1 << (GoParser.RSHIFT - 54)) | (1 << (GoParser.BIT_CLEAR - 54)) | (1 << (GoParser.PLUS - 54)) | (1 << (GoParser.MINUS - 54)) | (1 << (GoParser.CARET - 54)) | (1 << (GoParser.STAR - 54)) | (1 << (GoParser.AMPERSAND - 54)))) != 0)):
+                if not (((((_la - 54)) & ~0x3f) == 0 and ((1 << (_la - 54)) & (
+                        (1 << (GoParser.OR - 54)) | (1 << (GoParser.DIV - 54)) | (1 << (GoParser.MOD - 54)) | (
+                        1 << (GoParser.LSHIFT - 54)) | (1 << (GoParser.RSHIFT - 54)) | (
+                                1 << (GoParser.BIT_CLEAR - 54)) | (1 << (GoParser.PLUS - 54)) | (
+                                1 << (GoParser.MINUS - 54)) | (1 << (GoParser.CARET - 54)) | (
+                                1 << (GoParser.STAR - 54)) | (1 << (GoParser.AMPERSAND - 54)))) != 0)):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-
 
             self.state = 423
             self.match(GoParser.ASSIGN)
@@ -2698,37 +2583,31 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ShortVarDeclContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def identifierList(self):
-            return self.getTypedRuleContext(GoParser.IdentifierListContext,0)
-
+            return self.getTypedRuleContext(GoParser.IdentifierListContext, 0)
 
         def DECLARE_ASSIGN(self):
             return self.getToken(GoParser.DECLARE_ASSIGN, 0)
 
         def expressionList(self):
-            return self.getTypedRuleContext(GoParser.ExpressionListContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionListContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_shortVarDecl
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterShortVarDecl" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterShortVarDecl"):
                 listener.enterShortVarDecl(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitShortVarDecl" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitShortVarDecl"):
                 listener.exitShortVarDecl(self)
-
-
-
 
     def shortVarDecl(self):
 
@@ -2750,10 +2629,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class EmptyStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -2766,27 +2644,24 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_emptyStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterEmptyStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterEmptyStmt"):
                 listener.enterEmptyStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitEmptyStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitEmptyStmt"):
                 listener.exitEmptyStmt(self)
-
-
-
 
     def emptyStmt(self):
 
         localctx = GoParser.EmptyStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 54, self.RULE_emptyStmt)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 429
             _la = self._input.LA(1)
-            if not(_la==GoParser.SEMI or _la==GoParser.EOSSS):
+            if not (_la == GoParser.SEMI or _la == GoParser.EOSSS):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -2799,10 +2674,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class LabeledStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -2813,28 +2687,24 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.COLON, 0)
 
         def statement(self):
-            return self.getTypedRuleContext(GoParser.StatementContext,0)
-
+            return self.getTypedRuleContext(GoParser.StatementContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_labeledStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLabeledStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterLabeledStmt"):
                 listener.enterLabeledStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLabeledStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitLabeledStmt"):
                 listener.exitLabeledStmt(self)
-
-
-
 
     def labeledStmt(self):
 
         localctx = GoParser.LabeledStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 56, self.RULE_labeledStmt)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 431
@@ -2844,7 +2714,23 @@ class GoParser ( Parser ):
             self.state = 434
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (
+                    1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (
+                            1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (
+                            1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (
+                            1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (
+                            1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (
+                            1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (
+                            1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                            1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                    (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 433
                 self.statement()
 
@@ -2857,10 +2743,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ReturnStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -2868,28 +2753,24 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.RETURN, 0)
 
         def expressionList(self):
-            return self.getTypedRuleContext(GoParser.ExpressionListContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionListContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_returnStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterReturnStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterReturnStmt"):
                 listener.enterReturnStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitReturnStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitReturnStmt"):
                 listener.exitReturnStmt(self)
-
-
-
 
     def returnStmt(self):
 
         localctx = GoParser.ReturnStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 58, self.RULE_returnStmt)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 436
@@ -2897,7 +2778,18 @@ class GoParser ( Parser ):
             self.state = 438
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (
+                    1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (
+                            1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                            1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                    (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 437
                 self.expressionList()
 
@@ -2910,10 +2802,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class BreakStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -2926,22 +2817,19 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_breakStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterBreakStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterBreakStmt"):
                 listener.enterBreakStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitBreakStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitBreakStmt"):
                 listener.exitBreakStmt(self)
-
-
-
 
     def breakStmt(self):
 
         localctx = GoParser.BreakStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 60, self.RULE_breakStmt)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 440
@@ -2949,7 +2837,7 @@ class GoParser ( Parser ):
             self.state = 442
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.IDENTIFIER:
+            if _la == GoParser.IDENTIFIER:
                 self.state = 441
                 self.match(GoParser.IDENTIFIER)
 
@@ -2962,10 +2850,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ContinueStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -2978,22 +2865,19 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_continueStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterContinueStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterContinueStmt"):
                 listener.enterContinueStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitContinueStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitContinueStmt"):
                 listener.exitContinueStmt(self)
-
-
-
 
     def continueStmt(self):
 
         localctx = GoParser.ContinueStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 62, self.RULE_continueStmt)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 444
@@ -3001,7 +2885,7 @@ class GoParser ( Parser ):
             self.state = 446
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.IDENTIFIER:
+            if _la == GoParser.IDENTIFIER:
                 self.state = 445
                 self.match(GoParser.IDENTIFIER)
 
@@ -3014,10 +2898,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class GotoStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -3030,16 +2913,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_gotoStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterGotoStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterGotoStmt"):
                 listener.enterGotoStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitGotoStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitGotoStmt"):
                 listener.exitGotoStmt(self)
-
-
-
 
     def gotoStmt(self):
 
@@ -3059,10 +2939,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class FallthroughStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -3072,16 +2951,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_fallthroughStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFallthroughStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterFallthroughStmt"):
                 listener.enterFallthroughStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFallthroughStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitFallthroughStmt"):
                 listener.exitFallthroughStmt(self)
-
-
-
 
     def fallthroughStmt(self):
 
@@ -3099,10 +2975,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class DeferStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -3110,22 +2985,18 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.DEFER, 0)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_deferStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterDeferStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterDeferStmt"):
                 listener.enterDeferStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitDeferStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitDeferStmt"):
                 listener.exitDeferStmt(self)
-
-
-
 
     def deferStmt(self):
 
@@ -3145,68 +3016,59 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class IfStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def IF(self):
             return self.getToken(GoParser.IF, 0)
 
-        def block(self, i:int=None):
+        def block(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.BlockContext)
             else:
-                return self.getTypedRuleContext(GoParser.BlockContext,i)
-
+                return self.getTypedRuleContext(GoParser.BlockContext, i)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def eoss(self):
-            return self.getTypedRuleContext(GoParser.EossContext,0)
-
+            return self.getTypedRuleContext(GoParser.EossContext, 0)
 
         def simpleStmt(self):
-            return self.getTypedRuleContext(GoParser.SimpleStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.SimpleStmtContext, 0)
 
         def ELSE(self):
             return self.getToken(GoParser.ELSE, 0)
 
         def ifStmt(self):
-            return self.getTypedRuleContext(GoParser.IfStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.IfStmtContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_ifStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterIfStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterIfStmt"):
                 listener.enterIfStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitIfStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitIfStmt"):
                 listener.exitIfStmt(self)
-
-
-
 
     def ifStmt(self):
 
         localctx = GoParser.IfStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 70, self.RULE_ifStmt)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 456
             self.match(GoParser.IF)
             self.state = 465
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,36,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 36, self._ctx)
             if la_ == 1:
                 self.state = 457
                 self.expression(0)
@@ -3228,13 +3090,12 @@ class GoParser ( Parser ):
                 self.expression(0)
                 pass
 
-
             self.state = 467
             self.block()
             self.state = 473
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.ELSE:
+            if _la == GoParser.ELSE:
                 self.state = 468
                 self.match(GoParser.ELSE)
                 self.state = 471
@@ -3261,34 +3122,28 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class SwitchStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def exprSwitchStmt(self):
-            return self.getTypedRuleContext(GoParser.ExprSwitchStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExprSwitchStmtContext, 0)
 
         def typeSwitchStmt(self):
-            return self.getTypedRuleContext(GoParser.TypeSwitchStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeSwitchStmtContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_switchStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSwitchStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterSwitchStmt"):
                 listener.enterSwitchStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSwitchStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitSwitchStmt"):
                 listener.exitSwitchStmt(self)
-
-
-
 
     def switchStmt(self):
 
@@ -3297,7 +3152,7 @@ class GoParser ( Parser ):
         try:
             self.state = 477
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,39,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 39, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 475
@@ -3319,10 +3174,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ExprSwitchStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -3336,58 +3190,62 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.R_CURLY, 0)
 
         def eoss(self):
-            return self.getTypedRuleContext(GoParser.EossContext,0)
+            return self.getTypedRuleContext(GoParser.EossContext, 0)
 
-
-        def exprCaseClause(self, i:int=None):
+        def exprCaseClause(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ExprCaseClauseContext)
             else:
-                return self.getTypedRuleContext(GoParser.ExprCaseClauseContext,i)
-
+                return self.getTypedRuleContext(GoParser.ExprCaseClauseContext, i)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def simpleStmt(self):
-            return self.getTypedRuleContext(GoParser.SimpleStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.SimpleStmtContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_exprSwitchStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExprSwitchStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterExprSwitchStmt"):
                 listener.enterExprSwitchStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExprSwitchStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitExprSwitchStmt"):
                 listener.exitExprSwitchStmt(self)
-
-
-
 
     def exprSwitchStmt(self):
 
         localctx = GoParser.ExprSwitchStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 74, self.RULE_exprSwitchStmt)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 479
             self.match(GoParser.SWITCH)
             self.state = 490
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,43,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 43, self._ctx)
             if la_ == 1:
                 self.state = 481
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                        (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (
+                        1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (
+                                1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (
+                                1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (
+                                1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                        (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (
+                        1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (
+                                1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (
+                                1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (
+                                1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (
+                                1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                                1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                     self.state = 480
                     self.expression(0)
-
 
                 pass
 
@@ -3395,30 +3253,51 @@ class GoParser ( Parser ):
                 self.state = 484
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                        (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (
+                        1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (
+                                1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (
+                                1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (
+                                1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                        (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (
+                        1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (
+                                1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (
+                                1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (
+                                1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (
+                                1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                                1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                     self.state = 483
                     self.simpleStmt()
-
 
                 self.state = 486
                 self.eoss()
                 self.state = 488
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                        (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (
+                        1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (
+                                1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (
+                                1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (
+                                1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                        (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (
+                        1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (
+                                1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (
+                                1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (
+                                1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (
+                                1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                                1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                     self.state = 487
                     self.expression(0)
 
-
                 pass
-
 
             self.state = 492
             self.match(GoParser.L_CURLY)
             self.state = 496
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==GoParser.DEFAULT or _la==GoParser.CASE:
+            while _la == GoParser.DEFAULT or _la == GoParser.CASE:
                 self.state = 493
                 self.exprCaseClause()
                 self.state = 498
@@ -3435,43 +3314,37 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ExprCaseClauseContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def exprSwitchCase(self):
-            return self.getTypedRuleContext(GoParser.ExprSwitchCaseContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExprSwitchCaseContext, 0)
 
         def COLON(self):
             return self.getToken(GoParser.COLON, 0)
 
         def statementList(self):
-            return self.getTypedRuleContext(GoParser.StatementListContext,0)
-
+            return self.getTypedRuleContext(GoParser.StatementListContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_exprCaseClause
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExprCaseClause" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterExprCaseClause"):
                 listener.enterExprCaseClause(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExprCaseClause" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitExprCaseClause"):
                 listener.exitExprCaseClause(self)
-
-
-
 
     def exprCaseClause(self):
 
         localctx = GoParser.ExprCaseClauseContext(self, self._ctx, self.state)
         self.enterRule(localctx, 76, self.RULE_exprCaseClause)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 501
@@ -3481,7 +3354,23 @@ class GoParser ( Parser ):
             self.state = 504
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (
+                    1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (
+                            1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (
+                            1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (
+                            1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (
+                            1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (
+                            1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (
+                            1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                            1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                    (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 503
                 self.statementList()
 
@@ -3494,10 +3383,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ExprSwitchCaseContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -3505,8 +3393,7 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.CASE, 0)
 
         def expressionList(self):
-            return self.getTypedRuleContext(GoParser.ExpressionListContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionListContext, 0)
 
         def DEFAULT(self):
             return self.getToken(GoParser.DEFAULT, 0)
@@ -3514,16 +3401,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_exprSwitchCase
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExprSwitchCase" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterExprSwitchCase"):
                 listener.enterExprSwitchCase(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExprSwitchCase" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitExprSwitchCase"):
                 listener.exitExprSwitchCase(self)
-
-
-
 
     def exprSwitchCase(self):
 
@@ -3556,10 +3440,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TypeSwitchStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -3573,50 +3456,43 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.R_CURLY, 0)
 
         def typeSwitchGuard(self):
-            return self.getTypedRuleContext(GoParser.TypeSwitchGuardContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeSwitchGuardContext, 0)
 
         def eoss(self):
-            return self.getTypedRuleContext(GoParser.EossContext,0)
-
+            return self.getTypedRuleContext(GoParser.EossContext, 0)
 
         def simpleStmt(self):
-            return self.getTypedRuleContext(GoParser.SimpleStmtContext,0)
+            return self.getTypedRuleContext(GoParser.SimpleStmtContext, 0)
 
-
-        def typeCaseClause(self, i:int=None):
+        def typeCaseClause(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.TypeCaseClauseContext)
             else:
-                return self.getTypedRuleContext(GoParser.TypeCaseClauseContext,i)
-
+                return self.getTypedRuleContext(GoParser.TypeCaseClauseContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_typeSwitchStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTypeSwitchStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTypeSwitchStmt"):
                 listener.enterTypeSwitchStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTypeSwitchStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTypeSwitchStmt"):
                 listener.exitTypeSwitchStmt(self)
-
-
-
 
     def typeSwitchStmt(self):
 
         localctx = GoParser.TypeSwitchStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 80, self.RULE_typeSwitchStmt)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 511
             self.match(GoParser.SWITCH)
             self.state = 520
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,47,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 47, self._ctx)
             if la_ == 1:
                 self.state = 512
                 self.typeSwitchGuard()
@@ -3638,13 +3514,12 @@ class GoParser ( Parser ):
                 self.typeSwitchGuard()
                 pass
 
-
             self.state = 522
             self.match(GoParser.L_CURLY)
             self.state = 526
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==GoParser.DEFAULT or _la==GoParser.CASE:
+            while _la == GoParser.DEFAULT or _la == GoParser.CASE:
                 self.state = 523
                 self.typeCaseClause()
                 self.state = 528
@@ -3661,16 +3536,14 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TypeSwitchGuardContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def primaryExpr(self):
-            return self.getTypedRuleContext(GoParser.PrimaryExprContext,0)
-
+            return self.getTypedRuleContext(GoParser.PrimaryExprContext, 0)
 
         def DOT(self):
             return self.getToken(GoParser.DOT, 0)
@@ -3693,16 +3566,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_typeSwitchGuard
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTypeSwitchGuard" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTypeSwitchGuard"):
                 listener.enterTypeSwitchGuard(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTypeSwitchGuard" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTypeSwitchGuard"):
                 listener.exitTypeSwitchGuard(self)
-
-
-
 
     def typeSwitchGuard(self):
 
@@ -3712,13 +3582,12 @@ class GoParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 533
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,49,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 49, self._ctx)
             if la_ == 1:
                 self.state = 531
                 self.match(GoParser.IDENTIFIER)
                 self.state = 532
                 self.match(GoParser.DECLARE_ASSIGN)
-
 
             self.state = 535
             self.primaryExpr(0)
@@ -3738,43 +3607,37 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TypeCaseClauseContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def typeSwitchCase(self):
-            return self.getTypedRuleContext(GoParser.TypeSwitchCaseContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeSwitchCaseContext, 0)
 
         def COLON(self):
             return self.getToken(GoParser.COLON, 0)
 
         def statementList(self):
-            return self.getTypedRuleContext(GoParser.StatementListContext,0)
-
+            return self.getTypedRuleContext(GoParser.StatementListContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_typeCaseClause
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTypeCaseClause" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTypeCaseClause"):
                 listener.enterTypeCaseClause(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTypeCaseClause" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTypeCaseClause"):
                 listener.exitTypeCaseClause(self)
-
-
-
 
     def typeCaseClause(self):
 
         localctx = GoParser.TypeCaseClauseContext(self, self._ctx, self.state)
         self.enterRule(localctx, 84, self.RULE_typeCaseClause)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 541
@@ -3784,7 +3647,23 @@ class GoParser ( Parser ):
             self.state = 544
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (
+                    1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (
+                            1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (
+                            1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (
+                            1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (
+                            1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (
+                            1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (
+                            1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                            1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                    (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 543
                 self.statementList()
 
@@ -3797,10 +3676,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TypeSwitchCaseContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -3808,8 +3686,7 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.CASE, 0)
 
         def typeList(self):
-            return self.getTypedRuleContext(GoParser.TypeListContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeListContext, 0)
 
         def DEFAULT(self):
             return self.getToken(GoParser.DEFAULT, 0)
@@ -3817,16 +3694,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_typeSwitchCase
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTypeSwitchCase" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTypeSwitchCase"):
                 listener.enterTypeSwitchCase(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTypeSwitchCase" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTypeSwitchCase"):
                 listener.exitTypeSwitchCase(self)
-
-
-
 
     def typeSwitchCase(self):
 
@@ -3859,27 +3733,25 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TypeListContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def type_(self, i:int=None):
+        def type_(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.Type_Context)
             else:
-                return self.getTypedRuleContext(GoParser.Type_Context,i)
+                return self.getTypedRuleContext(GoParser.Type_Context, i)
 
-
-        def NIL_LIT(self, i:int=None):
+        def NIL_LIT(self, i: int = None):
             if i is None:
                 return self.getTokens(GoParser.NIL_LIT)
             else:
                 return self.getToken(GoParser.NIL_LIT, i)
 
-        def COMMA(self, i:int=None):
+        def COMMA(self, i: int = None):
             if i is None:
                 return self.getTokens(GoParser.COMMA)
             else:
@@ -3888,28 +3760,26 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_typeList
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTypeList" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTypeList"):
                 listener.enterTypeList(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTypeList" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTypeList"):
                 listener.exitTypeList(self)
-
-
-
 
     def typeList(self):
 
         localctx = GoParser.TypeListContext(self, self._ctx, self.state)
         self.enterRule(localctx, 88, self.RULE_typeList)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 553
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN, GoParser.IDENTIFIER, GoParser.L_PAREN, GoParser.L_BRACKET, GoParser.STAR, GoParser.RECEIVE]:
+            if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN,
+                         GoParser.IDENTIFIER, GoParser.L_PAREN, GoParser.L_BRACKET, GoParser.STAR, GoParser.RECEIVE]:
                 self.state = 551
                 self.type_()
                 pass
@@ -3923,13 +3793,15 @@ class GoParser ( Parser ):
             self.state = 562
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==GoParser.COMMA:
+            while _la == GoParser.COMMA:
                 self.state = 555
                 self.match(GoParser.COMMA)
                 self.state = 558
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
-                if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN, GoParser.IDENTIFIER, GoParser.L_PAREN, GoParser.L_BRACKET, GoParser.STAR, GoParser.RECEIVE]:
+                if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN,
+                             GoParser.IDENTIFIER, GoParser.L_PAREN, GoParser.L_BRACKET, GoParser.STAR,
+                             GoParser.RECEIVE]:
                     self.state = 556
                     self.type_()
                     pass
@@ -3952,10 +3824,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class SelectStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -3968,32 +3839,28 @@ class GoParser ( Parser ):
         def R_CURLY(self):
             return self.getToken(GoParser.R_CURLY, 0)
 
-        def commClause(self, i:int=None):
+        def commClause(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.CommClauseContext)
             else:
-                return self.getTypedRuleContext(GoParser.CommClauseContext,i)
-
+                return self.getTypedRuleContext(GoParser.CommClauseContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_selectStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSelectStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterSelectStmt"):
                 listener.enterSelectStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSelectStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitSelectStmt"):
                 listener.exitSelectStmt(self)
-
-
-
 
     def selectStmt(self):
 
         localctx = GoParser.SelectStmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 90, self.RULE_selectStmt)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 565
@@ -4003,7 +3870,7 @@ class GoParser ( Parser ):
             self.state = 570
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==GoParser.DEFAULT or _la==GoParser.CASE:
+            while _la == GoParser.DEFAULT or _la == GoParser.CASE:
                 self.state = 567
                 self.commClause()
                 self.state = 572
@@ -4020,43 +3887,37 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class CommClauseContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def commCase(self):
-            return self.getTypedRuleContext(GoParser.CommCaseContext,0)
-
+            return self.getTypedRuleContext(GoParser.CommCaseContext, 0)
 
         def COLON(self):
             return self.getToken(GoParser.COLON, 0)
 
         def statementList(self):
-            return self.getTypedRuleContext(GoParser.StatementListContext,0)
-
+            return self.getTypedRuleContext(GoParser.StatementListContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_commClause
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterCommClause" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterCommClause"):
                 listener.enterCommClause(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitCommClause" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitCommClause"):
                 listener.exitCommClause(self)
-
-
-
 
     def commClause(self):
 
         localctx = GoParser.CommClauseContext(self, self._ctx, self.state)
         self.enterRule(localctx, 92, self.RULE_commClause)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 575
@@ -4066,7 +3927,23 @@ class GoParser ( Parser ):
             self.state = 578
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.BREAK) | (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (
+                    1 << GoParser.SELECT) | (1 << GoParser.DEFER) | (1 << GoParser.GO) | (1 << GoParser.MAP) | (
+                            1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.GOTO) | (
+                            1 << GoParser.SWITCH) | (1 << GoParser.CONST) | (1 << GoParser.FALLTHROUGH) | (
+                            1 << GoParser.IF) | (1 << GoParser.TYPE) | (1 << GoParser.CONTINUE) | (
+                            1 << GoParser.FOR) | (1 << GoParser.RETURN) | (1 << GoParser.VAR) | (
+                            1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (
+                            1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                            1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                    (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 577
                 self.statementList()
 
@@ -4079,10 +3956,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class CommCaseContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -4090,12 +3966,10 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.CASE, 0)
 
         def sendStmt(self):
-            return self.getTypedRuleContext(GoParser.SendStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.SendStmtContext, 0)
 
         def recvStmt(self):
-            return self.getTypedRuleContext(GoParser.RecvStmtContext,0)
-
+            return self.getTypedRuleContext(GoParser.RecvStmtContext, 0)
 
         def DEFAULT(self):
             return self.getToken(GoParser.DEFAULT, 0)
@@ -4103,16 +3977,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_commCase
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterCommCase" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterCommCase"):
                 listener.enterCommCase(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitCommCase" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitCommCase"):
                 listener.exitCommCase(self)
-
-
-
 
     def commCase(self):
 
@@ -4128,7 +3999,7 @@ class GoParser ( Parser ):
                 self.match(GoParser.CASE)
                 self.state = 583
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,57,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input, 57, self._ctx)
                 if la_ == 1:
                     self.state = 581
                     self.sendStmt()
@@ -4138,7 +4009,6 @@ class GoParser ( Parser ):
                     self.state = 582
                     self.recvStmt()
                     pass
-
 
                 pass
             elif token in [GoParser.DEFAULT]:
@@ -4157,28 +4027,24 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class RecvStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
-            self.recvExpr = None # ExpressionContext
+            self.recvExpr = None  # ExpressionContext
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def expressionList(self):
-            return self.getTypedRuleContext(GoParser.ExpressionListContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionListContext, 0)
 
         def ASSIGN(self):
             return self.getToken(GoParser.ASSIGN, 0)
 
         def identifierList(self):
-            return self.getTypedRuleContext(GoParser.IdentifierListContext,0)
-
+            return self.getTypedRuleContext(GoParser.IdentifierListContext, 0)
 
         def DECLARE_ASSIGN(self):
             return self.getToken(GoParser.DECLARE_ASSIGN, 0)
@@ -4186,16 +4052,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_recvStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterRecvStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterRecvStmt"):
                 listener.enterRecvStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitRecvStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitRecvStmt"):
                 listener.exitRecvStmt(self)
-
-
-
 
     def recvStmt(self):
 
@@ -4205,7 +4068,7 @@ class GoParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 594
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,59,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 59, self._ctx)
             if la_ == 1:
                 self.state = 588
                 self.expressionList()
@@ -4218,7 +4081,6 @@ class GoParser ( Parser ):
                 self.state = 592
                 self.match(GoParser.DECLARE_ASSIGN)
 
-
             self.state = 596
             localctx.recvExpr = self.expression(0)
         except RecognitionException as re:
@@ -4229,10 +4091,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ForStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -4240,34 +4101,27 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.FOR, 0)
 
         def block(self):
-            return self.getTypedRuleContext(GoParser.BlockContext,0)
-
+            return self.getTypedRuleContext(GoParser.BlockContext, 0)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def forClause(self):
-            return self.getTypedRuleContext(GoParser.ForClauseContext,0)
-
+            return self.getTypedRuleContext(GoParser.ForClauseContext, 0)
 
         def rangeClause(self):
-            return self.getTypedRuleContext(GoParser.RangeClauseContext,0)
-
+            return self.getTypedRuleContext(GoParser.RangeClauseContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_forStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterForStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterForStmt"):
                 listener.enterForStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitForStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitForStmt"):
                 listener.exitForStmt(self)
-
-
-
 
     def forStmt(self):
 
@@ -4279,7 +4133,7 @@ class GoParser ( Parser ):
             self.match(GoParser.FOR)
             self.state = 602
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,60,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 60, self._ctx)
             if la_ == 1:
                 self.state = 599
                 self.expression(0)
@@ -4292,7 +4146,6 @@ class GoParser ( Parser ):
                 self.state = 601
                 self.rangeClause()
 
-
             self.state = 604
             self.block()
         except RecognitionException as re:
@@ -4303,78 +4156,102 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ForClauseContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
-            self.initStmt = None # SimpleStmtContext
-            self.postStmt = None # SimpleStmtContext
+            self.initStmt = None  # SimpleStmtContext
+            self.postStmt = None  # SimpleStmtContext
 
-        def eoss(self, i:int=None):
+        def eoss(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.EossContext)
             else:
-                return self.getTypedRuleContext(GoParser.EossContext,i)
-
+                return self.getTypedRuleContext(GoParser.EossContext, i)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
-
-        def simpleStmt(self, i:int=None):
+        def simpleStmt(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.SimpleStmtContext)
             else:
-                return self.getTypedRuleContext(GoParser.SimpleStmtContext,i)
-
+                return self.getTypedRuleContext(GoParser.SimpleStmtContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_forClause
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterForClause" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterForClause"):
                 listener.enterForClause(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitForClause" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitForClause"):
                 listener.exitForClause(self)
-
-
-
 
     def forClause(self):
 
         localctx = GoParser.ForClauseContext(self, self._ctx, self.state)
         self.enterRule(localctx, 100, self.RULE_forClause)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 607
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (
+                    1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (
+                            1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                            1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                    (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 606
                 localctx.initStmt = self.simpleStmt()
-
 
             self.state = 609
             self.eoss()
             self.state = 611
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (
+                    1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (
+                            1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                            1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                    (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 610
                 self.expression(0)
-
 
             self.state = 613
             self.eoss()
             self.state = 615
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (
+                    1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (
+                            1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                            1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                    (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 614
                 localctx.postStmt = self.simpleStmt()
 
@@ -4387,10 +4264,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class RangeClauseContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -4398,19 +4274,16 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.RANGE, 0)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def expressionList(self):
-            return self.getTypedRuleContext(GoParser.ExpressionListContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionListContext, 0)
 
         def ASSIGN(self):
             return self.getToken(GoParser.ASSIGN, 0)
 
         def identifierList(self):
-            return self.getTypedRuleContext(GoParser.IdentifierListContext,0)
-
+            return self.getTypedRuleContext(GoParser.IdentifierListContext, 0)
 
         def DECLARE_ASSIGN(self):
             return self.getToken(GoParser.DECLARE_ASSIGN, 0)
@@ -4418,16 +4291,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_rangeClause
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterRangeClause" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterRangeClause"):
                 listener.enterRangeClause(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitRangeClause" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitRangeClause"):
                 listener.exitRangeClause(self)
-
-
-
 
     def rangeClause(self):
 
@@ -4437,7 +4307,7 @@ class GoParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 623
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,64,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 64, self._ctx)
             if la_ == 1:
                 self.state = 617
                 self.expressionList()
@@ -4449,7 +4319,6 @@ class GoParser ( Parser ):
                 self.identifierList()
                 self.state = 621
                 self.match(GoParser.DECLARE_ASSIGN)
-
 
             self.state = 625
             self.match(GoParser.RANGE)
@@ -4463,10 +4332,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class GoStmtContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -4474,22 +4342,18 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.GO, 0)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_goStmt
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterGoStmt" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterGoStmt"):
                 listener.enterGoStmt(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitGoStmt" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitGoStmt"):
                 listener.exitGoStmt(self)
-
-
-
 
     def goStmt(self):
 
@@ -4509,27 +4373,23 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class Type_Context(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def typeName(self):
-            return self.getTypedRuleContext(GoParser.TypeNameContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeNameContext, 0)
 
         def typeLit(self):
-            return self.getTypedRuleContext(GoParser.TypeLitContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeLitContext, 0)
 
         def L_PAREN(self):
             return self.getToken(GoParser.L_PAREN, 0)
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def R_PAREN(self):
             return self.getToken(GoParser.R_PAREN, 0)
@@ -4537,16 +4397,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_type_
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterType_" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterType_"):
                 listener.enterType_(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitType_" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitType_"):
                 listener.exitType_(self)
-
-
-
 
     def type_(self):
 
@@ -4561,7 +4418,8 @@ class GoParser ( Parser ):
                 self.state = 631
                 self.typeName()
                 pass
-            elif token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN, GoParser.L_BRACKET, GoParser.STAR, GoParser.RECEIVE]:
+            elif token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN,
+                           GoParser.L_BRACKET, GoParser.STAR, GoParser.RECEIVE]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 632
                 self.typeLit()
@@ -4586,16 +4444,14 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TypeNameContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def qualifiedIdent(self):
-            return self.getTypedRuleContext(GoParser.QualifiedIdentContext,0)
-
+            return self.getTypedRuleContext(GoParser.QualifiedIdentContext, 0)
 
         def IDENTIFIER(self):
             return self.getToken(GoParser.IDENTIFIER, 0)
@@ -4603,16 +4459,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_typeName
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTypeName" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTypeName"):
                 listener.enterTypeName(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTypeName" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTypeName"):
                 listener.exitTypeName(self)
-
-
-
 
     def typeName(self):
 
@@ -4621,7 +4474,7 @@ class GoParser ( Parser ):
         try:
             self.state = 641
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,66,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 66, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 639
@@ -4643,58 +4496,46 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TypeLitContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def arrayType(self):
-            return self.getTypedRuleContext(GoParser.ArrayTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.ArrayTypeContext, 0)
 
         def structType(self):
-            return self.getTypedRuleContext(GoParser.StructTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.StructTypeContext, 0)
 
         def pointerType(self):
-            return self.getTypedRuleContext(GoParser.PointerTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.PointerTypeContext, 0)
 
         def functionType(self):
-            return self.getTypedRuleContext(GoParser.FunctionTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.FunctionTypeContext, 0)
 
         def interfaceType(self):
-            return self.getTypedRuleContext(GoParser.InterfaceTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.InterfaceTypeContext, 0)
 
         def sliceType(self):
-            return self.getTypedRuleContext(GoParser.SliceTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.SliceTypeContext, 0)
 
         def mapType(self):
-            return self.getTypedRuleContext(GoParser.MapTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.MapTypeContext, 0)
 
         def channelType(self):
-            return self.getTypedRuleContext(GoParser.ChannelTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.ChannelTypeContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_typeLit
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTypeLit" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTypeLit"):
                 listener.enterTypeLit(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTypeLit" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTypeLit"):
                 listener.exitTypeLit(self)
-
-
-
 
     def typeLit(self):
 
@@ -4703,7 +4544,7 @@ class GoParser ( Parser ):
         try:
             self.state = 651
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,67,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 67, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 643
@@ -4761,10 +4602,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ArrayTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -4772,29 +4612,24 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.L_BRACKET, 0)
 
         def arrayLength(self):
-            return self.getTypedRuleContext(GoParser.ArrayLengthContext,0)
-
+            return self.getTypedRuleContext(GoParser.ArrayLengthContext, 0)
 
         def R_BRACKET(self):
             return self.getToken(GoParser.R_BRACKET, 0)
 
         def elementType(self):
-            return self.getTypedRuleContext(GoParser.ElementTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.ElementTypeContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_arrayType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterArrayType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterArrayType"):
                 listener.enterArrayType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitArrayType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitArrayType"):
                 listener.exitArrayType(self)
-
-
-
 
     def arrayType(self):
 
@@ -4818,30 +4653,25 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ArrayLengthContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_arrayLength
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterArrayLength" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterArrayLength"):
                 listener.enterArrayLength(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitArrayLength" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitArrayLength"):
                 listener.exitArrayLength(self)
-
-
-
 
     def arrayLength(self):
 
@@ -4859,30 +4689,25 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ElementTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_elementType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterElementType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterElementType"):
                 listener.enterElementType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitElementType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitElementType"):
                 listener.exitElementType(self)
-
-
-
 
     def elementType(self):
 
@@ -4900,10 +4725,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class PointerTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -4911,22 +4735,18 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.STAR, 0)
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_pointerType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterPointerType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterPointerType"):
                 listener.enterPointerType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitPointerType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitPointerType"):
                 listener.exitPointerType(self)
-
-
-
 
     def pointerType(self):
 
@@ -4946,10 +4766,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class InterfaceTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -4962,46 +4781,40 @@ class GoParser ( Parser ):
         def R_CURLY(self):
             return self.getToken(GoParser.R_CURLY, 0)
 
-        def eoss(self, i:int=None):
+        def eoss(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.EossContext)
             else:
-                return self.getTypedRuleContext(GoParser.EossContext,i)
+                return self.getTypedRuleContext(GoParser.EossContext, i)
 
-
-        def methodSpec(self, i:int=None):
+        def methodSpec(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.MethodSpecContext)
             else:
-                return self.getTypedRuleContext(GoParser.MethodSpecContext,i)
+                return self.getTypedRuleContext(GoParser.MethodSpecContext, i)
 
-
-        def typeName(self, i:int=None):
+        def typeName(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.TypeNameContext)
             else:
-                return self.getTypedRuleContext(GoParser.TypeNameContext,i)
-
+                return self.getTypedRuleContext(GoParser.TypeNameContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_interfaceType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterInterfaceType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterInterfaceType"):
                 listener.enterInterfaceType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitInterfaceType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitInterfaceType"):
                 listener.exitInterfaceType(self)
-
-
-
 
     def interfaceType(self):
 
         localctx = GoParser.InterfaceTypeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 120, self.RULE_interfaceType)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 665
@@ -5011,10 +4824,10 @@ class GoParser ( Parser ):
             self.state = 675
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==GoParser.IDENTIFIER:
+            while _la == GoParser.IDENTIFIER:
                 self.state = 669
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,68,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input, 68, self._ctx)
                 if la_ == 1:
                     self.state = 667
                     self.methodSpec()
@@ -5024,7 +4837,6 @@ class GoParser ( Parser ):
                     self.state = 668
                     self.typeName()
                     pass
-
 
                 self.state = 671
                 self.eoss()
@@ -5042,10 +4854,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class SliceTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -5056,22 +4867,18 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.R_BRACKET, 0)
 
         def elementType(self):
-            return self.getTypedRuleContext(GoParser.ElementTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.ElementTypeContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_sliceType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSliceType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterSliceType"):
                 listener.enterSliceType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSliceType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitSliceType"):
                 listener.exitSliceType(self)
-
-
-
 
     def sliceType(self):
 
@@ -5093,10 +4900,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class MapTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -5107,29 +4913,24 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.L_BRACKET, 0)
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def R_BRACKET(self):
             return self.getToken(GoParser.R_BRACKET, 0)
 
         def elementType(self):
-            return self.getTypedRuleContext(GoParser.ElementTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.ElementTypeContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_mapType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterMapType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterMapType"):
                 listener.enterMapType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitMapType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitMapType"):
                 listener.exitMapType(self)
-
-
-
 
     def mapType(self):
 
@@ -5155,16 +4956,14 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ChannelTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def elementType(self):
-            return self.getTypedRuleContext(GoParser.ElementTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.ElementTypeContext, 0)
 
         def CHAN(self):
             return self.getToken(GoParser.CHAN, 0)
@@ -5175,16 +4974,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_channelType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterChannelType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterChannelType"):
                 listener.enterChannelType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitChannelType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitChannelType"):
                 listener.exitChannelType(self)
-
-
-
 
     def channelType(self):
 
@@ -5194,7 +4990,7 @@ class GoParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 695
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,70,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 70, self._ctx)
             if la_ == 1:
                 self.state = 690
                 self.match(GoParser.CHAN)
@@ -5214,7 +5010,6 @@ class GoParser ( Parser ):
                 self.match(GoParser.CHAN)
                 pass
 
-
             self.state = 697
             self.elementType()
         except RecognitionException as re:
@@ -5225,10 +5020,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class MethodSpecContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -5236,26 +5030,21 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.IDENTIFIER, 0)
 
         def parameters(self):
-            return self.getTypedRuleContext(GoParser.ParametersContext,0)
-
+            return self.getTypedRuleContext(GoParser.ParametersContext, 0)
 
         def result(self):
-            return self.getTypedRuleContext(GoParser.ResultContext,0)
-
+            return self.getTypedRuleContext(GoParser.ResultContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_methodSpec
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterMethodSpec" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterMethodSpec"):
                 listener.enterMethodSpec(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitMethodSpec" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitMethodSpec"):
                 listener.exitMethodSpec(self)
-
-
-
 
     def methodSpec(self):
 
@@ -5264,7 +5053,7 @@ class GoParser ( Parser ):
         try:
             self.state = 705
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,71,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 71, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 699
@@ -5292,10 +5081,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class FunctionTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -5303,22 +5091,18 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.FUNC, 0)
 
         def signature(self):
-            return self.getTypedRuleContext(GoParser.SignatureContext,0)
-
+            return self.getTypedRuleContext(GoParser.SignatureContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_functionType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFunctionType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterFunctionType"):
                 listener.enterFunctionType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFunctionType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitFunctionType"):
                 listener.exitFunctionType(self)
-
-
-
 
     def functionType(self):
 
@@ -5338,34 +5122,28 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class SignatureContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def parameters(self):
-            return self.getTypedRuleContext(GoParser.ParametersContext,0)
-
+            return self.getTypedRuleContext(GoParser.ParametersContext, 0)
 
         def result(self):
-            return self.getTypedRuleContext(GoParser.ResultContext,0)
-
+            return self.getTypedRuleContext(GoParser.ResultContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_signature
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSignature" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterSignature"):
                 listener.enterSignature(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSignature" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitSignature"):
                 listener.exitSignature(self)
-
-
-
 
     def signature(self):
 
@@ -5374,7 +5152,7 @@ class GoParser ( Parser ):
         try:
             self.state = 714
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,72,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 72, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 710
@@ -5398,34 +5176,28 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ResultContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def parameters(self):
-            return self.getTypedRuleContext(GoParser.ParametersContext,0)
-
+            return self.getTypedRuleContext(GoParser.ParametersContext, 0)
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_result
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterResult" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterResult"):
                 listener.enterResult(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitResult" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitResult"):
                 listener.exitResult(self)
-
-
-
 
     def result(self):
 
@@ -5434,7 +5206,7 @@ class GoParser ( Parser ):
         try:
             self.state = 718
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,73,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 73, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 716
@@ -5456,10 +5228,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ParametersContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -5469,14 +5240,13 @@ class GoParser ( Parser ):
         def R_PAREN(self):
             return self.getToken(GoParser.R_PAREN, 0)
 
-        def parameterDecl(self, i:int=None):
+        def parameterDecl(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ParameterDeclContext)
             else:
-                return self.getTypedRuleContext(GoParser.ParameterDeclContext,i)
+                return self.getTypedRuleContext(GoParser.ParameterDeclContext, i)
 
-
-        def COMMA(self, i:int=None):
+        def COMMA(self, i: int = None):
             if i is None:
                 return self.getTokens(GoParser.COMMA)
             else:
@@ -5485,22 +5255,19 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_parameters
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterParameters" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterParameters"):
                 listener.enterParameters(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitParameters" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitParameters"):
                 listener.exitParameters(self)
-
-
-
 
     def parameters(self):
 
         localctx = GoParser.ParametersContext(self, self._ctx, self.state)
         self.enterRule(localctx, 136, self.RULE_parameters)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 720
@@ -5508,31 +5275,33 @@ class GoParser ( Parser ):
             self.state = 732
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if ((((_la - 3)) & ~0x3f) == 0 and ((1 << (_la - 3)) & ((1 << (GoParser.FUNC - 3)) | (1 << (GoParser.INTERFACE - 3)) | (1 << (GoParser.MAP - 3)) | (1 << (GoParser.STRUCT - 3)) | (1 << (GoParser.CHAN - 3)) | (1 << (GoParser.IDENTIFIER - 3)) | (1 << (GoParser.L_PAREN - 3)) | (1 << (GoParser.L_BRACKET - 3)) | (1 << (GoParser.ELLIPSIS - 3)) | (1 << (GoParser.STAR - 3)) | (1 << (GoParser.RECEIVE - 3)))) != 0):
+            if ((((_la - 3)) & ~0x3f) == 0 and ((1 << (_la - 3)) & (
+                    (1 << (GoParser.FUNC - 3)) | (1 << (GoParser.INTERFACE - 3)) | (1 << (GoParser.MAP - 3)) | (
+                    1 << (GoParser.STRUCT - 3)) | (1 << (GoParser.CHAN - 3)) | (1 << (GoParser.IDENTIFIER - 3)) | (
+                            1 << (GoParser.L_PAREN - 3)) | (1 << (GoParser.L_BRACKET - 3)) | (
+                            1 << (GoParser.ELLIPSIS - 3)) | (1 << (GoParser.STAR - 3)) | (
+                            1 << (GoParser.RECEIVE - 3)))) != 0):
                 self.state = 721
                 self.parameterDecl()
                 self.state = 726
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,74,self._ctx)
-                while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                    if _alt==1:
+                _alt = self._interp.adaptivePredict(self._input, 74, self._ctx)
+                while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                    if _alt == 1:
                         self.state = 722
                         self.match(GoParser.COMMA)
                         self.state = 723
-                        self.parameterDecl() 
+                        self.parameterDecl()
                     self.state = 728
                     self._errHandler.sync(self)
-                    _alt = self._interp.adaptivePredict(self._input,74,self._ctx)
+                    _alt = self._interp.adaptivePredict(self._input, 74, self._ctx)
 
                 self.state = 730
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==GoParser.COMMA:
+                if _la == GoParser.COMMA:
                     self.state = 729
                     self.match(GoParser.COMMA)
-
-
-
 
             self.state = 734
             self.match(GoParser.R_PAREN)
@@ -5544,20 +5313,17 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ParameterDeclContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def identifierList(self):
-            return self.getTypedRuleContext(GoParser.IdentifierListContext,0)
-
+            return self.getTypedRuleContext(GoParser.IdentifierListContext, 0)
 
         def ELLIPSIS(self):
             return self.getToken(GoParser.ELLIPSIS, 0)
@@ -5565,39 +5331,34 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_parameterDecl
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterParameterDecl" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterParameterDecl"):
                 listener.enterParameterDecl(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitParameterDecl" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitParameterDecl"):
                 listener.exitParameterDecl(self)
-
-
-
 
     def parameterDecl(self):
 
         localctx = GoParser.ParameterDeclContext(self, self._ctx, self.state)
         self.enterRule(localctx, 138, self.RULE_parameterDecl)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 737
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,77,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 77, self._ctx)
             if la_ == 1:
                 self.state = 736
                 self.identifierList()
 
-
             self.state = 740
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.ELLIPSIS:
+            if _la == GoParser.ELLIPSIS:
                 self.state = 739
                 self.match(GoParser.ELLIPSIS)
-
 
             self.state = 742
             self.type_()
@@ -5609,240 +5370,247 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ExpressionContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
-
 
         def getRuleIndex(self):
             return GoParser.RULE_expression
 
-     
-        def copyFrom(self, ctx:ParserRuleContext):
+        def copyFrom(self, ctx: ParserRuleContext):
             super().copyFrom(ctx)
-
 
     class LogicalAndOperationContext(ExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a GoParser.ExpressionContext
+        def __init__(self, parser, ctx: ParserRuleContext):  # actually a GoParser.ExpressionContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
-        def expression(self, i:int=None):
+        def expression(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ExpressionContext)
             else:
-                return self.getTypedRuleContext(GoParser.ExpressionContext,i)
+                return self.getTypedRuleContext(GoParser.ExpressionContext, i)
 
         def LOGICAL_AND(self):
             return self.getToken(GoParser.LOGICAL_AND, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLogicalAndOperation" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterLogicalAndOperation"):
                 listener.enterLogicalAndOperation(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLogicalAndOperation" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitLogicalAndOperation"):
                 listener.exitLogicalAndOperation(self)
-
 
     class UnaryOperationContext(ExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a GoParser.ExpressionContext
+        def __init__(self, parser, ctx: ParserRuleContext):  # actually a GoParser.ExpressionContext
             super().__init__(parser)
-            self.unary_op = None # Token
+            self.unary_op = None  # Token
             self.copyFrom(ctx)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def PLUS(self):
             return self.getToken(GoParser.PLUS, 0)
+
         def MINUS(self):
             return self.getToken(GoParser.MINUS, 0)
+
         def EXCLAMATION(self):
             return self.getToken(GoParser.EXCLAMATION, 0)
+
         def CARET(self):
             return self.getToken(GoParser.CARET, 0)
+
         def STAR(self):
             return self.getToken(GoParser.STAR, 0)
+
         def AMPERSAND(self):
             return self.getToken(GoParser.AMPERSAND, 0)
+
         def RECEIVE(self):
             return self.getToken(GoParser.RECEIVE, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterUnaryOperation" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterUnaryOperation"):
                 listener.enterUnaryOperation(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitUnaryOperation" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitUnaryOperation"):
                 listener.exitUnaryOperation(self)
-
 
     class PrimaryExpressionContext(ExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a GoParser.ExpressionContext
+        def __init__(self, parser, ctx: ParserRuleContext):  # actually a GoParser.ExpressionContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
         def primaryExpr(self):
-            return self.getTypedRuleContext(GoParser.PrimaryExprContext,0)
+            return self.getTypedRuleContext(GoParser.PrimaryExprContext, 0)
 
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterPrimaryExpression" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterPrimaryExpression"):
                 listener.enterPrimaryExpression(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitPrimaryExpression" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitPrimaryExpression"):
                 listener.exitPrimaryExpression(self)
-
 
     class PlusMinusOperationContext(ExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a GoParser.ExpressionContext
+        def __init__(self, parser, ctx: ParserRuleContext):  # actually a GoParser.ExpressionContext
             super().__init__(parser)
-            self.add_op = None # Token
+            self.add_op = None  # Token
             self.copyFrom(ctx)
 
-        def expression(self, i:int=None):
+        def expression(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ExpressionContext)
             else:
-                return self.getTypedRuleContext(GoParser.ExpressionContext,i)
+                return self.getTypedRuleContext(GoParser.ExpressionContext, i)
 
         def PLUS(self):
             return self.getToken(GoParser.PLUS, 0)
+
         def MINUS(self):
             return self.getToken(GoParser.MINUS, 0)
+
         def OR(self):
             return self.getToken(GoParser.OR, 0)
+
         def CARET(self):
             return self.getToken(GoParser.CARET, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterPlusMinusOperation" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterPlusMinusOperation"):
                 listener.enterPlusMinusOperation(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitPlusMinusOperation" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitPlusMinusOperation"):
                 listener.exitPlusMinusOperation(self)
-
 
     class RelationOperationContext(ExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a GoParser.ExpressionContext
+        def __init__(self, parser, ctx: ParserRuleContext):  # actually a GoParser.ExpressionContext
             super().__init__(parser)
-            self.rel_op = None # Token
+            self.rel_op = None  # Token
             self.copyFrom(ctx)
 
-        def expression(self, i:int=None):
+        def expression(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ExpressionContext)
             else:
-                return self.getTypedRuleContext(GoParser.ExpressionContext,i)
+                return self.getTypedRuleContext(GoParser.ExpressionContext, i)
 
         def EQUALS(self):
             return self.getToken(GoParser.EQUALS, 0)
+
         def NOT_EQUALS(self):
             return self.getToken(GoParser.NOT_EQUALS, 0)
+
         def LESS(self):
             return self.getToken(GoParser.LESS, 0)
+
         def LESS_OR_EQUALS(self):
             return self.getToken(GoParser.LESS_OR_EQUALS, 0)
+
         def GREATER(self):
             return self.getToken(GoParser.GREATER, 0)
+
         def GREATER_OR_EQUALS(self):
             return self.getToken(GoParser.GREATER_OR_EQUALS, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterRelationOperation" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterRelationOperation"):
                 listener.enterRelationOperation(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitRelationOperation" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitRelationOperation"):
                 listener.exitRelationOperation(self)
-
 
     class MulDivOperationContext(ExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a GoParser.ExpressionContext
+        def __init__(self, parser, ctx: ParserRuleContext):  # actually a GoParser.ExpressionContext
             super().__init__(parser)
-            self.mul_op = None # Token
+            self.mul_op = None  # Token
             self.copyFrom(ctx)
 
-        def expression(self, i:int=None):
+        def expression(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ExpressionContext)
             else:
-                return self.getTypedRuleContext(GoParser.ExpressionContext,i)
+                return self.getTypedRuleContext(GoParser.ExpressionContext, i)
 
         def STAR(self):
             return self.getToken(GoParser.STAR, 0)
+
         def DIV(self):
             return self.getToken(GoParser.DIV, 0)
+
         def MOD(self):
             return self.getToken(GoParser.MOD, 0)
+
         def LSHIFT(self):
             return self.getToken(GoParser.LSHIFT, 0)
+
         def RSHIFT(self):
             return self.getToken(GoParser.RSHIFT, 0)
+
         def AMPERSAND(self):
             return self.getToken(GoParser.AMPERSAND, 0)
+
         def BIT_CLEAR(self):
             return self.getToken(GoParser.BIT_CLEAR, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterMulDivOperation" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterMulDivOperation"):
                 listener.enterMulDivOperation(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitMulDivOperation" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitMulDivOperation"):
                 listener.exitMulDivOperation(self)
-
 
     class LogicalOrOperationContext(ExpressionContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a GoParser.ExpressionContext
+        def __init__(self, parser, ctx: ParserRuleContext):  # actually a GoParser.ExpressionContext
             super().__init__(parser)
             self.copyFrom(ctx)
 
-        def expression(self, i:int=None):
+        def expression(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ExpressionContext)
             else:
-                return self.getTypedRuleContext(GoParser.ExpressionContext,i)
+                return self.getTypedRuleContext(GoParser.ExpressionContext, i)
 
         def LOGICAL_OR(self):
             return self.getToken(GoParser.LOGICAL_OR, 0)
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLogicalOrOperation" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterLogicalOrOperation"):
                 listener.enterLogicalOrOperation(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLogicalOrOperation" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitLogicalOrOperation"):
                 listener.exitLogicalOrOperation(self)
 
-
-
-    def expression(self, _p:int=0):
+    def expression(self, _p: int = 0):
         _parentctx = self._ctx
         _parentState = self.state
         localctx = GoParser.ExpressionContext(self, self._ctx, _parentState)
         _prevctx = localctx
         _startState = 140
         self.enterRecursionRule(localctx, 140, self.RULE_expression, _p)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 748
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,79,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 79, self._ctx)
             if la_ == 1:
                 localctx = GoParser.PrimaryExpressionContext(self, localctx)
                 self._ctx = localctx
@@ -5859,7 +5627,10 @@ class GoParser ( Parser ):
                 self.state = 746
                 localctx.unary_op = self._input.LT(1)
                 _la = self._input.LA(1)
-                if not(((((_la - 60)) & ~0x3f) == 0 and ((1 << (_la - 60)) & ((1 << (GoParser.EXCLAMATION - 60)) | (1 << (GoParser.PLUS - 60)) | (1 << (GoParser.MINUS - 60)) | (1 << (GoParser.CARET - 60)) | (1 << (GoParser.STAR - 60)) | (1 << (GoParser.AMPERSAND - 60)) | (1 << (GoParser.RECEIVE - 60)))) != 0)):
+                if not (((((_la - 60)) & ~0x3f) == 0 and ((1 << (_la - 60)) & (
+                        (1 << (GoParser.EXCLAMATION - 60)) | (1 << (GoParser.PLUS - 60)) | (
+                        1 << (GoParser.MINUS - 60)) | (1 << (GoParser.CARET - 60)) | (1 << (GoParser.STAR - 60)) | (
+                                1 << (GoParser.AMPERSAND - 60)) | (1 << (GoParser.RECEIVE - 60)))) != 0)):
                     localctx.unary_op = self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
@@ -5868,21 +5639,21 @@ class GoParser ( Parser ):
                 self.expression(6)
                 pass
 
-
             self._ctx.stop = self._input.LT(-1)
             self.state = 767
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,81,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 81, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
                     self.state = 765
                     self._errHandler.sync(self)
-                    la_ = self._interp.adaptivePredict(self._input,80,self._ctx)
+                    la_ = self._interp.adaptivePredict(self._input, 80, self._ctx)
                     if la_ == 1:
-                        localctx = GoParser.MulDivOperationContext(self, GoParser.ExpressionContext(self, _parentctx, _parentState))
+                        localctx = GoParser.MulDivOperationContext(self, GoParser.ExpressionContext(self, _parentctx,
+                                                                                                    _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
                         self.state = 750
                         if not self.precpred(self._ctx, 5):
@@ -5891,7 +5662,11 @@ class GoParser ( Parser ):
                         self.state = 751
                         localctx.mul_op = self._input.LT(1)
                         _la = self._input.LA(1)
-                        if not(((((_la - 55)) & ~0x3f) == 0 and ((1 << (_la - 55)) & ((1 << (GoParser.DIV - 55)) | (1 << (GoParser.MOD - 55)) | (1 << (GoParser.LSHIFT - 55)) | (1 << (GoParser.RSHIFT - 55)) | (1 << (GoParser.BIT_CLEAR - 55)) | (1 << (GoParser.STAR - 55)) | (1 << (GoParser.AMPERSAND - 55)))) != 0)):
+                        if not (((((_la - 55)) & ~0x3f) == 0 and ((1 << (_la - 55)) & (
+                                (1 << (GoParser.DIV - 55)) | (1 << (GoParser.MOD - 55)) | (
+                                1 << (GoParser.LSHIFT - 55)) | (1 << (GoParser.RSHIFT - 55)) | (
+                                        1 << (GoParser.BIT_CLEAR - 55)) | (1 << (GoParser.STAR - 55)) | (
+                                        1 << (GoParser.AMPERSAND - 55)))) != 0)):
                             localctx.mul_op = self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
@@ -5901,7 +5676,8 @@ class GoParser ( Parser ):
                         pass
 
                     elif la_ == 2:
-                        localctx = GoParser.PlusMinusOperationContext(self, GoParser.ExpressionContext(self, _parentctx, _parentState))
+                        localctx = GoParser.PlusMinusOperationContext(self, GoParser.ExpressionContext(self, _parentctx,
+                                                                                                       _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
                         self.state = 753
                         if not self.precpred(self._ctx, 4):
@@ -5910,7 +5686,9 @@ class GoParser ( Parser ):
                         self.state = 754
                         localctx.add_op = self._input.LT(1)
                         _la = self._input.LA(1)
-                        if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.OR) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0)):
+                        if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                                (1 << GoParser.OR) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (
+                                1 << GoParser.CARET))) != 0)):
                             localctx.add_op = self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
@@ -5920,7 +5698,8 @@ class GoParser ( Parser ):
                         pass
 
                     elif la_ == 3:
-                        localctx = GoParser.RelationOperationContext(self, GoParser.ExpressionContext(self, _parentctx, _parentState))
+                        localctx = GoParser.RelationOperationContext(self, GoParser.ExpressionContext(self, _parentctx,
+                                                                                                      _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
                         self.state = 756
                         if not self.precpred(self._ctx, 3):
@@ -5929,7 +5708,10 @@ class GoParser ( Parser ):
                         self.state = 757
                         localctx.rel_op = self._input.LT(1)
                         _la = self._input.LA(1)
-                        if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.EQUALS) | (1 << GoParser.NOT_EQUALS) | (1 << GoParser.LESS) | (1 << GoParser.LESS_OR_EQUALS) | (1 << GoParser.GREATER) | (1 << GoParser.GREATER_OR_EQUALS))) != 0)):
+                        if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                                (1 << GoParser.EQUALS) | (1 << GoParser.NOT_EQUALS) | (1 << GoParser.LESS) | (
+                                1 << GoParser.LESS_OR_EQUALS) | (1 << GoParser.GREATER) | (
+                                        1 << GoParser.GREATER_OR_EQUALS))) != 0)):
                             localctx.rel_op = self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
@@ -5939,7 +5721,9 @@ class GoParser ( Parser ):
                         pass
 
                     elif la_ == 4:
-                        localctx = GoParser.LogicalAndOperationContext(self, GoParser.ExpressionContext(self, _parentctx, _parentState))
+                        localctx = GoParser.LogicalAndOperationContext(self,
+                                                                       GoParser.ExpressionContext(self, _parentctx,
+                                                                                                  _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
                         self.state = 759
                         if not self.precpred(self._ctx, 2):
@@ -5952,7 +5736,8 @@ class GoParser ( Parser ):
                         pass
 
                     elif la_ == 5:
-                        localctx = GoParser.LogicalOrOperationContext(self, GoParser.ExpressionContext(self, _parentctx, _parentState))
+                        localctx = GoParser.LogicalOrOperationContext(self, GoParser.ExpressionContext(self, _parentctx,
+                                                                                                       _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
                         self.state = 762
                         if not self.precpred(self._ctx, 1):
@@ -5964,10 +5749,9 @@ class GoParser ( Parser ):
                         self.expression(2)
                         pass
 
-             
                 self.state = 769
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,81,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 81, self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -5977,44 +5761,35 @@ class GoParser ( Parser ):
             self.unrollRecursionContexts(_parentctx)
         return localctx
 
-
     class PrimaryExprContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def operand(self):
-            return self.getTypedRuleContext(GoParser.OperandContext,0)
-
+            return self.getTypedRuleContext(GoParser.OperandContext, 0)
 
         def conversion(self):
-            return self.getTypedRuleContext(GoParser.ConversionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ConversionContext, 0)
 
         def methodExpr(self):
-            return self.getTypedRuleContext(GoParser.MethodExprContext,0)
-
+            return self.getTypedRuleContext(GoParser.MethodExprContext, 0)
 
         def primaryExpr(self):
-            return self.getTypedRuleContext(GoParser.PrimaryExprContext,0)
-
+            return self.getTypedRuleContext(GoParser.PrimaryExprContext, 0)
 
         def index(self):
-            return self.getTypedRuleContext(GoParser.IndexContext,0)
-
+            return self.getTypedRuleContext(GoParser.IndexContext, 0)
 
         def slice_(self):
-            return self.getTypedRuleContext(GoParser.Slice_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Slice_Context, 0)
 
         def typeAssertion(self):
-            return self.getTypedRuleContext(GoParser.TypeAssertionContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeAssertionContext, 0)
 
         def arguments(self):
-            return self.getTypedRuleContext(GoParser.ArgumentsContext,0)
-
+            return self.getTypedRuleContext(GoParser.ArgumentsContext, 0)
 
         def DOT(self):
             return self.getToken(GoParser.DOT, 0)
@@ -6025,17 +5800,15 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_primaryExpr
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterPrimaryExpr" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterPrimaryExpr"):
                 listener.enterPrimaryExpr(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitPrimaryExpr" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitPrimaryExpr"):
                 listener.exitPrimaryExpr(self)
 
-
-
-    def primaryExpr(self, _p:int=0):
+    def primaryExpr(self, _p: int = 0):
         _parentctx = self._ctx
         _parentState = self.state
         localctx = GoParser.PrimaryExprContext(self, self._ctx, _parentState)
@@ -6046,7 +5819,7 @@ class GoParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 774
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,82,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 82, self._ctx)
             if la_ == 1:
                 self.state = 771
                 self.operand()
@@ -6062,13 +5835,12 @@ class GoParser ( Parser ):
                 self.methodExpr()
                 pass
 
-
             self._ctx.stop = self._input.LT(-1)
             self.state = 787
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,84,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 84, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
@@ -6080,7 +5852,7 @@ class GoParser ( Parser ):
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
                     self.state = 783
                     self._errHandler.sync(self)
-                    la_ = self._interp.adaptivePredict(self._input,83,self._ctx)
+                    la_ = self._interp.adaptivePredict(self._input, 83, self._ctx)
                     if la_ == 1:
                         self.state = 777
                         self.match(GoParser.DOT)
@@ -6108,10 +5880,9 @@ class GoParser ( Parser ):
                         self.arguments()
                         pass
 
-             
                 self.state = 789
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,84,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 84, self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -6121,23 +5892,20 @@ class GoParser ( Parser ):
             self.unrollRecursionContexts(_parentctx)
         return localctx
 
-
     class ConversionContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def nonNamedType(self):
-            return self.getTypedRuleContext(GoParser.NonNamedTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.NonNamedTypeContext, 0)
 
         def L_PAREN(self):
             return self.getToken(GoParser.L_PAREN, 0)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def R_PAREN(self):
             return self.getToken(GoParser.R_PAREN, 0)
@@ -6148,22 +5916,19 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_conversion
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterConversion" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterConversion"):
                 listener.enterConversion(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitConversion" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitConversion"):
                 listener.exitConversion(self)
-
-
-
 
     def conversion(self):
 
         localctx = GoParser.ConversionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 144, self.RULE_conversion)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 790
@@ -6175,10 +5940,9 @@ class GoParser ( Parser ):
             self.state = 794
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.COMMA:
+            if _la == GoParser.COMMA:
                 self.state = 793
                 self.match(GoParser.COMMA)
-
 
             self.state = 796
             self.match(GoParser.R_PAREN)
@@ -6190,23 +5954,20 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class NonNamedTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def typeLit(self):
-            return self.getTypedRuleContext(GoParser.TypeLitContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeLitContext, 0)
 
         def L_PAREN(self):
             return self.getToken(GoParser.L_PAREN, 0)
 
         def nonNamedType(self):
-            return self.getTypedRuleContext(GoParser.NonNamedTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.NonNamedTypeContext, 0)
 
         def R_PAREN(self):
             return self.getToken(GoParser.R_PAREN, 0)
@@ -6214,16 +5975,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_nonNamedType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterNonNamedType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterNonNamedType"):
                 listener.enterNonNamedType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitNonNamedType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitNonNamedType"):
                 listener.exitNonNamedType(self)
-
-
-
 
     def nonNamedType(self):
 
@@ -6233,7 +5991,8 @@ class GoParser ( Parser ):
             self.state = 803
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN, GoParser.L_BRACKET, GoParser.STAR, GoParser.RECEIVE]:
+            if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN,
+                         GoParser.L_BRACKET, GoParser.STAR, GoParser.RECEIVE]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 798
                 self.typeLit()
@@ -6258,27 +6017,23 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class OperandContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def literal(self):
-            return self.getTypedRuleContext(GoParser.LiteralContext,0)
-
+            return self.getTypedRuleContext(GoParser.LiteralContext, 0)
 
         def operandName(self):
-            return self.getTypedRuleContext(GoParser.OperandNameContext,0)
-
+            return self.getTypedRuleContext(GoParser.OperandNameContext, 0)
 
         def L_PAREN(self):
             return self.getToken(GoParser.L_PAREN, 0)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def R_PAREN(self):
             return self.getToken(GoParser.R_PAREN, 0)
@@ -6286,16 +6041,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_operand
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterOperand" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterOperand"):
                 listener.enterOperand(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitOperand" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitOperand"):
                 listener.exitOperand(self)
-
-
-
 
     def operand(self):
 
@@ -6304,7 +6056,7 @@ class GoParser ( Parser ):
         try:
             self.state = 811
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,87,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 87, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 805
@@ -6336,38 +6088,31 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class LiteralContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def basicLit(self):
-            return self.getTypedRuleContext(GoParser.BasicLitContext,0)
-
+            return self.getTypedRuleContext(GoParser.BasicLitContext, 0)
 
         def compositeLit(self):
-            return self.getTypedRuleContext(GoParser.CompositeLitContext,0)
-
+            return self.getTypedRuleContext(GoParser.CompositeLitContext, 0)
 
         def functionLit(self):
-            return self.getTypedRuleContext(GoParser.FunctionLitContext,0)
-
+            return self.getTypedRuleContext(GoParser.FunctionLitContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_literal
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLiteral" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterLiteral"):
                 listener.enterLiteral(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLiteral" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitLiteral"):
                 listener.exitLiteral(self)
-
-
-
 
     def literal(self):
 
@@ -6377,7 +6122,9 @@ class GoParser ( Parser ):
             self.state = 816
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [GoParser.NIL_LIT, GoParser.DECIMAL_LIT, GoParser.BINARY_LIT, GoParser.OCTAL_LIT, GoParser.HEX_LIT, GoParser.FLOAT_LIT, GoParser.IMAGINARY_LIT, GoParser.RUNE_LIT, GoParser.RAW_STRING_LIT, GoParser.INTERPRETED_STRING_LIT]:
+            if token in [GoParser.NIL_LIT, GoParser.DECIMAL_LIT, GoParser.BINARY_LIT, GoParser.OCTAL_LIT,
+                         GoParser.HEX_LIT, GoParser.FLOAT_LIT, GoParser.IMAGINARY_LIT, GoParser.RUNE_LIT,
+                         GoParser.RAW_STRING_LIT, GoParser.INTERPRETED_STRING_LIT]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 813
                 self.basicLit()
@@ -6403,10 +6150,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class BasicLitContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -6414,12 +6160,10 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.NIL_LIT, 0)
 
         def integer(self):
-            return self.getTypedRuleContext(GoParser.IntegerContext,0)
-
+            return self.getTypedRuleContext(GoParser.IntegerContext, 0)
 
         def string_(self):
-            return self.getTypedRuleContext(GoParser.String_Context,0)
-
+            return self.getTypedRuleContext(GoParser.String_Context, 0)
 
         def FLOAT_LIT(self):
             return self.getToken(GoParser.FLOAT_LIT, 0)
@@ -6427,16 +6171,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_basicLit
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterBasicLit" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterBasicLit"):
                 listener.enterBasicLit(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitBasicLit" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitBasicLit"):
                 listener.exitBasicLit(self)
-
-
-
 
     def basicLit(self):
 
@@ -6451,7 +6192,8 @@ class GoParser ( Parser ):
                 self.state = 818
                 self.match(GoParser.NIL_LIT)
                 pass
-            elif token in [GoParser.DECIMAL_LIT, GoParser.BINARY_LIT, GoParser.OCTAL_LIT, GoParser.HEX_LIT, GoParser.IMAGINARY_LIT, GoParser.RUNE_LIT]:
+            elif token in [GoParser.DECIMAL_LIT, GoParser.BINARY_LIT, GoParser.OCTAL_LIT, GoParser.HEX_LIT,
+                           GoParser.IMAGINARY_LIT, GoParser.RUNE_LIT]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 819
                 self.integer()
@@ -6477,10 +6219,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class IntegerContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -6505,27 +6246,27 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_integer
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterInteger" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterInteger"):
                 listener.enterInteger(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitInteger" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitInteger"):
                 listener.exitInteger(self)
-
-
-
 
     def integer(self):
 
         localctx = GoParser.IntegerContext(self, self._ctx, self.state)
         self.enterRule(localctx, 154, self.RULE_integer)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 824
             _la = self._input.LA(1)
-            if not(((((_la - 67)) & ~0x3f) == 0 and ((1 << (_la - 67)) & ((1 << (GoParser.DECIMAL_LIT - 67)) | (1 << (GoParser.BINARY_LIT - 67)) | (1 << (GoParser.OCTAL_LIT - 67)) | (1 << (GoParser.HEX_LIT - 67)) | (1 << (GoParser.IMAGINARY_LIT - 67)) | (1 << (GoParser.RUNE_LIT - 67)))) != 0)):
+            if not (((((_la - 67)) & ~0x3f) == 0 and ((1 << (_la - 67)) & (
+                    (1 << (GoParser.DECIMAL_LIT - 67)) | (1 << (GoParser.BINARY_LIT - 67)) | (
+                    1 << (GoParser.OCTAL_LIT - 67)) | (1 << (GoParser.HEX_LIT - 67)) | (
+                            1 << (GoParser.IMAGINARY_LIT - 67)) | (1 << (GoParser.RUNE_LIT - 67)))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -6538,10 +6279,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class OperandNameContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -6551,16 +6291,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_operandName
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterOperandName" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterOperandName"):
                 listener.enterOperandName(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitOperandName" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitOperandName"):
                 listener.exitOperandName(self)
-
-
-
 
     def operandName(self):
 
@@ -6578,14 +6315,13 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class QualifiedIdentContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def IDENTIFIER(self, i:int=None):
+        def IDENTIFIER(self, i: int = None):
             if i is None:
                 return self.getTokens(GoParser.IDENTIFIER)
             else:
@@ -6597,16 +6333,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_qualifiedIdent
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterQualifiedIdent" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterQualifiedIdent"):
                 listener.enterQualifiedIdent(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitQualifiedIdent" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitQualifiedIdent"):
                 listener.exitQualifiedIdent(self)
-
-
-
 
     def qualifiedIdent(self):
 
@@ -6628,34 +6361,28 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class CompositeLitContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def literalType(self):
-            return self.getTypedRuleContext(GoParser.LiteralTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.LiteralTypeContext, 0)
 
         def literalValue(self):
-            return self.getTypedRuleContext(GoParser.LiteralValueContext,0)
-
+            return self.getTypedRuleContext(GoParser.LiteralValueContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_compositeLit
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterCompositeLit" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterCompositeLit"):
                 listener.enterCompositeLit(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitCompositeLit" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitCompositeLit"):
                 listener.exitCompositeLit(self)
-
-
-
 
     def compositeLit(self):
 
@@ -6675,20 +6402,17 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class LiteralTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def structType(self):
-            return self.getTypedRuleContext(GoParser.StructTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.StructTypeContext, 0)
 
         def arrayType(self):
-            return self.getTypedRuleContext(GoParser.ArrayTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.ArrayTypeContext, 0)
 
         def L_BRACKET(self):
             return self.getToken(GoParser.L_BRACKET, 0)
@@ -6700,34 +6424,27 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.R_BRACKET, 0)
 
         def elementType(self):
-            return self.getTypedRuleContext(GoParser.ElementTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.ElementTypeContext, 0)
 
         def sliceType(self):
-            return self.getTypedRuleContext(GoParser.SliceTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.SliceTypeContext, 0)
 
         def mapType(self):
-            return self.getTypedRuleContext(GoParser.MapTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.MapTypeContext, 0)
 
         def typeName(self):
-            return self.getTypedRuleContext(GoParser.TypeNameContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeNameContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_literalType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLiteralType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterLiteralType"):
                 listener.enterLiteralType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLiteralType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitLiteralType"):
                 listener.exitLiteralType(self)
-
-
-
 
     def literalType(self):
 
@@ -6736,7 +6453,7 @@ class GoParser ( Parser ):
         try:
             self.state = 844
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,90,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 90, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 835
@@ -6788,10 +6505,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class LiteralValueContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -6802,8 +6518,7 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.R_CURLY, 0)
 
         def elementList(self):
-            return self.getTypedRuleContext(GoParser.ElementListContext,0)
-
+            return self.getTypedRuleContext(GoParser.ElementListContext, 0)
 
         def COMMA(self):
             return self.getToken(GoParser.COMMA, 0)
@@ -6811,22 +6526,19 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_literalValue
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLiteralValue" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterLiteralValue"):
                 listener.enterLiteralValue(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLiteralValue" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitLiteralValue"):
                 listener.exitLiteralValue(self)
-
-
-
 
     def literalValue(self):
 
         localctx = GoParser.LiteralValueContext(self, self._ctx, self.state)
         self.enterRule(localctx, 164, self.RULE_literalValue)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 846
@@ -6834,18 +6546,26 @@ class GoParser ( Parser ):
             self.state = 851
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (
+                    1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (
+                            1 << GoParser.L_PAREN) | (1 << GoParser.L_CURLY) | (1 << GoParser.L_BRACKET) | (
+                            1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (
+                            1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 847
                 self.elementList()
                 self.state = 849
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==GoParser.COMMA:
+                if _la == GoParser.COMMA:
                     self.state = 848
                     self.match(GoParser.COMMA)
-
-
-
 
             self.state = 853
             self.match(GoParser.R_CURLY)
@@ -6857,21 +6577,19 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ElementListContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def keyedElement(self, i:int=None):
+        def keyedElement(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.KeyedElementContext)
             else:
-                return self.getTypedRuleContext(GoParser.KeyedElementContext,i)
+                return self.getTypedRuleContext(GoParser.KeyedElementContext, i)
 
-
-        def COMMA(self, i:int=None):
+        def COMMA(self, i: int = None):
             if i is None:
                 return self.getTokens(GoParser.COMMA)
             else:
@@ -6880,16 +6598,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_elementList
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterElementList" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterElementList"):
                 listener.enterElementList(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitElementList" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitElementList"):
                 listener.exitElementList(self)
-
-
-
 
     def elementList(self):
 
@@ -6901,16 +6616,16 @@ class GoParser ( Parser ):
             self.keyedElement()
             self.state = 860
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,93,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 93, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 856
                     self.match(GoParser.COMMA)
                     self.state = 857
-                    self.keyedElement() 
+                    self.keyedElement()
                 self.state = 862
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,93,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 93, self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -6920,20 +6635,17 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class KeyedElementContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def element(self):
-            return self.getTypedRuleContext(GoParser.ElementContext,0)
-
+            return self.getTypedRuleContext(GoParser.ElementContext, 0)
 
         def key(self):
-            return self.getTypedRuleContext(GoParser.KeyContext,0)
-
+            return self.getTypedRuleContext(GoParser.KeyContext, 0)
 
         def COLON(self):
             return self.getToken(GoParser.COLON, 0)
@@ -6941,16 +6653,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_keyedElement
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterKeyedElement" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterKeyedElement"):
                 listener.enterKeyedElement(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitKeyedElement" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitKeyedElement"):
                 listener.exitKeyedElement(self)
-
-
-
 
     def keyedElement(self):
 
@@ -6960,13 +6669,12 @@ class GoParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 866
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,94,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 94, self._ctx)
             if la_ == 1:
                 self.state = 863
                 self.key()
                 self.state = 864
                 self.match(GoParser.COLON)
-
 
             self.state = 868
             self.element()
@@ -6978,34 +6686,28 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class KeyContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def literalValue(self):
-            return self.getTypedRuleContext(GoParser.LiteralValueContext,0)
-
+            return self.getTypedRuleContext(GoParser.LiteralValueContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_key
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterKey" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterKey"):
                 listener.enterKey(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitKey" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitKey"):
                 listener.exitKey(self)
-
-
-
 
     def key(self):
 
@@ -7015,7 +6717,12 @@ class GoParser ( Parser ):
             self.state = 872
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN, GoParser.NIL_LIT, GoParser.IDENTIFIER, GoParser.L_PAREN, GoParser.L_BRACKET, GoParser.EXCLAMATION, GoParser.PLUS, GoParser.MINUS, GoParser.CARET, GoParser.STAR, GoParser.AMPERSAND, GoParser.RECEIVE, GoParser.DECIMAL_LIT, GoParser.BINARY_LIT, GoParser.OCTAL_LIT, GoParser.HEX_LIT, GoParser.FLOAT_LIT, GoParser.IMAGINARY_LIT, GoParser.RUNE_LIT, GoParser.RAW_STRING_LIT, GoParser.INTERPRETED_STRING_LIT]:
+            if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN,
+                         GoParser.NIL_LIT, GoParser.IDENTIFIER, GoParser.L_PAREN, GoParser.L_BRACKET,
+                         GoParser.EXCLAMATION, GoParser.PLUS, GoParser.MINUS, GoParser.CARET, GoParser.STAR,
+                         GoParser.AMPERSAND, GoParser.RECEIVE, GoParser.DECIMAL_LIT, GoParser.BINARY_LIT,
+                         GoParser.OCTAL_LIT, GoParser.HEX_LIT, GoParser.FLOAT_LIT, GoParser.IMAGINARY_LIT,
+                         GoParser.RUNE_LIT, GoParser.RAW_STRING_LIT, GoParser.INTERPRETED_STRING_LIT]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 870
                 self.expression(0)
@@ -7036,34 +6743,28 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ElementContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def literalValue(self):
-            return self.getTypedRuleContext(GoParser.LiteralValueContext,0)
-
+            return self.getTypedRuleContext(GoParser.LiteralValueContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_element
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterElement" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterElement"):
                 listener.enterElement(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitElement" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitElement"):
                 listener.exitElement(self)
-
-
-
 
     def element(self):
 
@@ -7073,7 +6774,12 @@ class GoParser ( Parser ):
             self.state = 876
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN, GoParser.NIL_LIT, GoParser.IDENTIFIER, GoParser.L_PAREN, GoParser.L_BRACKET, GoParser.EXCLAMATION, GoParser.PLUS, GoParser.MINUS, GoParser.CARET, GoParser.STAR, GoParser.AMPERSAND, GoParser.RECEIVE, GoParser.DECIMAL_LIT, GoParser.BINARY_LIT, GoParser.OCTAL_LIT, GoParser.HEX_LIT, GoParser.FLOAT_LIT, GoParser.IMAGINARY_LIT, GoParser.RUNE_LIT, GoParser.RAW_STRING_LIT, GoParser.INTERPRETED_STRING_LIT]:
+            if token in [GoParser.FUNC, GoParser.INTERFACE, GoParser.MAP, GoParser.STRUCT, GoParser.CHAN,
+                         GoParser.NIL_LIT, GoParser.IDENTIFIER, GoParser.L_PAREN, GoParser.L_BRACKET,
+                         GoParser.EXCLAMATION, GoParser.PLUS, GoParser.MINUS, GoParser.CARET, GoParser.STAR,
+                         GoParser.AMPERSAND, GoParser.RECEIVE, GoParser.DECIMAL_LIT, GoParser.BINARY_LIT,
+                         GoParser.OCTAL_LIT, GoParser.HEX_LIT, GoParser.FLOAT_LIT, GoParser.IMAGINARY_LIT,
+                         GoParser.RUNE_LIT, GoParser.RAW_STRING_LIT, GoParser.INTERPRETED_STRING_LIT]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 874
                 self.expression(0)
@@ -7094,10 +6800,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class StructTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -7110,39 +6815,34 @@ class GoParser ( Parser ):
         def R_CURLY(self):
             return self.getToken(GoParser.R_CURLY, 0)
 
-        def fieldDecl(self, i:int=None):
+        def fieldDecl(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.FieldDeclContext)
             else:
-                return self.getTypedRuleContext(GoParser.FieldDeclContext,i)
+                return self.getTypedRuleContext(GoParser.FieldDeclContext, i)
 
-
-        def eoss(self, i:int=None):
+        def eoss(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.EossContext)
             else:
-                return self.getTypedRuleContext(GoParser.EossContext,i)
-
+                return self.getTypedRuleContext(GoParser.EossContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_structType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterStructType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterStructType"):
                 listener.enterStructType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitStructType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitStructType"):
                 listener.exitStructType(self)
-
-
-
 
     def structType(self):
 
         localctx = GoParser.StructTypeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 174, self.RULE_structType)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 878
@@ -7152,7 +6852,7 @@ class GoParser ( Parser ):
             self.state = 885
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==GoParser.IDENTIFIER or _la==GoParser.STAR:
+            while _la == GoParser.IDENTIFIER or _la == GoParser.STAR:
                 self.state = 880
                 self.fieldDecl()
                 self.state = 881
@@ -7171,54 +6871,46 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class FieldDeclContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
-            self.tag = None # String_Context
+            self.tag = None  # String_Context
 
         def identifierList(self):
-            return self.getTypedRuleContext(GoParser.IdentifierListContext,0)
-
+            return self.getTypedRuleContext(GoParser.IdentifierListContext, 0)
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def embeddedField(self):
-            return self.getTypedRuleContext(GoParser.EmbeddedFieldContext,0)
-
+            return self.getTypedRuleContext(GoParser.EmbeddedFieldContext, 0)
 
         def string_(self):
-            return self.getTypedRuleContext(GoParser.String_Context,0)
-
+            return self.getTypedRuleContext(GoParser.String_Context, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_fieldDecl
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFieldDecl" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterFieldDecl"):
                 listener.enterFieldDecl(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFieldDecl" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitFieldDecl"):
                 listener.exitFieldDecl(self)
-
-
-
 
     def fieldDecl(self):
 
         localctx = GoParser.FieldDeclContext(self, self._ctx, self.state)
         self.enterRule(localctx, 176, self.RULE_fieldDecl)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 894
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,98,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 98, self._ctx)
             if la_ == 1:
                 self.state = 890
                 self.identifierList()
@@ -7231,11 +6923,10 @@ class GoParser ( Parser ):
                 self.embeddedField()
                 pass
 
-
             self.state = 897
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.RAW_STRING_LIT or _la==GoParser.INTERPRETED_STRING_LIT:
+            if _la == GoParser.RAW_STRING_LIT or _la == GoParser.INTERPRETED_STRING_LIT:
                 self.state = 896
                 localctx.tag = self.string_()
 
@@ -7248,10 +6939,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class String_Context(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -7264,27 +6954,24 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_string_
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterString_" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterString_"):
                 listener.enterString_(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitString_" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitString_"):
                 listener.exitString_(self)
-
-
-
 
     def string_(self):
 
         localctx = GoParser.String_Context(self, self._ctx, self.state)
         self.enterRule(localctx, 178, self.RULE_string_)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 899
             _la = self._input.LA(1)
-            if not(_la==GoParser.RAW_STRING_LIT or _la==GoParser.INTERPRETED_STRING_LIT):
+            if not (_la == GoParser.RAW_STRING_LIT or _la == GoParser.INTERPRETED_STRING_LIT):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -7297,16 +6984,14 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class EmbeddedFieldContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def typeName(self):
-            return self.getTypedRuleContext(GoParser.TypeNameContext,0)
-
+            return self.getTypedRuleContext(GoParser.TypeNameContext, 0)
 
         def STAR(self):
             return self.getToken(GoParser.STAR, 0)
@@ -7314,31 +6999,27 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_embeddedField
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterEmbeddedField" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterEmbeddedField"):
                 listener.enterEmbeddedField(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitEmbeddedField" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitEmbeddedField"):
                 listener.exitEmbeddedField(self)
-
-
-
 
     def embeddedField(self):
 
         localctx = GoParser.EmbeddedFieldContext(self, self._ctx, self.state)
         self.enterRule(localctx, 180, self.RULE_embeddedField)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 902
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==GoParser.STAR:
+            if _la == GoParser.STAR:
                 self.state = 901
                 self.match(GoParser.STAR)
-
 
             self.state = 904
             self.typeName()
@@ -7350,10 +7031,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class FunctionLitContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -7361,26 +7041,21 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.FUNC, 0)
 
         def signature(self):
-            return self.getTypedRuleContext(GoParser.SignatureContext,0)
-
+            return self.getTypedRuleContext(GoParser.SignatureContext, 0)
 
         def block(self):
-            return self.getTypedRuleContext(GoParser.BlockContext,0)
-
+            return self.getTypedRuleContext(GoParser.BlockContext, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_functionLit
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFunctionLit" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterFunctionLit"):
                 listener.enterFunctionLit(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFunctionLit" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitFunctionLit"):
                 listener.exitFunctionLit(self)
-
-
-
 
     def functionLit(self):
 
@@ -7402,10 +7077,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class IndexContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -7413,8 +7087,7 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.L_BRACKET, 0)
 
         def expression(self):
-            return self.getTypedRuleContext(GoParser.ExpressionContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionContext, 0)
 
         def R_BRACKET(self):
             return self.getToken(GoParser.R_BRACKET, 0)
@@ -7422,16 +7095,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_index
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterIndex" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterIndex"):
                 listener.enterIndex(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitIndex" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitIndex"):
                 listener.exitIndex(self)
-
-
-
 
     def index(self):
 
@@ -7453,10 +7123,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class Slice_Context(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -7466,63 +7135,81 @@ class GoParser ( Parser ):
         def R_BRACKET(self):
             return self.getToken(GoParser.R_BRACKET, 0)
 
-        def COLON(self, i:int=None):
+        def COLON(self, i: int = None):
             if i is None:
                 return self.getTokens(GoParser.COLON)
             else:
                 return self.getToken(GoParser.COLON, i)
 
-        def expression(self, i:int=None):
+        def expression(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(GoParser.ExpressionContext)
             else:
-                return self.getTypedRuleContext(GoParser.ExpressionContext,i)
-
+                return self.getTypedRuleContext(GoParser.ExpressionContext, i)
 
         def getRuleIndex(self):
             return GoParser.RULE_slice_
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSlice_" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterSlice_"):
                 listener.enterSlice_(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSlice_" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitSlice_"):
                 listener.exitSlice_(self)
-
-
-
 
     def slice_(self):
 
         localctx = GoParser.Slice_Context(self, self._ctx, self.state)
         self.enterRule(localctx, 186, self.RULE_slice_)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 914
             self.match(GoParser.L_BRACKET)
             self.state = 930
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,104,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 104, self._ctx)
             if la_ == 1:
                 self.state = 916
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                        (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (
+                        1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (
+                                1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (
+                                1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (
+                                1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                        (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (
+                        1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (
+                                1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (
+                                1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (
+                                1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (
+                                1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                                1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                     self.state = 915
                     self.expression(0)
-
 
                 self.state = 918
                 self.match(GoParser.COLON)
                 self.state = 920
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                        (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (
+                        1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (
+                                1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (
+                                1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (
+                                1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                        (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (
+                        1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (
+                                1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (
+                                1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (
+                                1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (
+                                1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                                1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                     self.state = 919
                     self.expression(0)
-
 
                 pass
 
@@ -7530,10 +7217,21 @@ class GoParser ( Parser ):
                 self.state = 923
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+                if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                        (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (
+                        1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (
+                                1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (
+                                1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (
+                                1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                        (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (
+                        1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (
+                                1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (
+                                1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (
+                                1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (
+                                1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                                1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                     self.state = 922
                     self.expression(0)
-
 
                 self.state = 925
                 self.match(GoParser.COLON)
@@ -7545,7 +7243,6 @@ class GoParser ( Parser ):
                 self.expression(0)
                 pass
 
-
             self.state = 932
             self.match(GoParser.R_BRACKET)
         except RecognitionException as re:
@@ -7556,10 +7253,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TypeAssertionContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -7570,8 +7266,7 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.L_PAREN, 0)
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def R_PAREN(self):
             return self.getToken(GoParser.R_PAREN, 0)
@@ -7579,16 +7274,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_typeAssertion
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTypeAssertion" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTypeAssertion"):
                 listener.enterTypeAssertion(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTypeAssertion" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTypeAssertion"):
                 listener.exitTypeAssertion(self)
-
-
-
 
     def typeAssertion(self):
 
@@ -7612,10 +7304,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ArgumentsContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -7626,17 +7317,15 @@ class GoParser ( Parser ):
             return self.getToken(GoParser.R_PAREN, 0)
 
         def expressionList(self):
-            return self.getTypedRuleContext(GoParser.ExpressionListContext,0)
-
+            return self.getTypedRuleContext(GoParser.ExpressionListContext, 0)
 
         def nonNamedType(self):
-            return self.getTypedRuleContext(GoParser.NonNamedTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.NonNamedTypeContext, 0)
 
         def ELLIPSIS(self):
             return self.getToken(GoParser.ELLIPSIS, 0)
 
-        def COMMA(self, i:int=None):
+        def COMMA(self, i: int = None):
             if i is None:
                 return self.getTokens(GoParser.COMMA)
             else:
@@ -7645,22 +7334,19 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_arguments
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterArguments" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterArguments"):
                 listener.enterArguments(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitArguments" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitArguments"):
                 listener.exitArguments(self)
-
-
-
 
     def arguments(self):
 
         localctx = GoParser.ArgumentsContext(self, self._ctx, self.state)
         self.enterRule(localctx, 190, self.RULE_arguments)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 939
@@ -7668,10 +7354,21 @@ class GoParser ( Parser ):
             self.state = 954
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or ((((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & ((1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.FUNC) | (1 << GoParser.INTERFACE) | (1 << GoParser.MAP) | (1 << GoParser.STRUCT) | (
+                    1 << GoParser.CHAN) | (1 << GoParser.NIL_LIT) | (1 << GoParser.IDENTIFIER) | (
+                            1 << GoParser.L_PAREN) | (1 << GoParser.L_BRACKET) | (1 << GoParser.EXCLAMATION) | (
+                            1 << GoParser.PLUS) | (1 << GoParser.MINUS) | (1 << GoParser.CARET))) != 0) or (
+                    (((_la - 64)) & ~0x3f) == 0 and ((1 << (_la - 64)) & (
+                    (1 << (GoParser.STAR - 64)) | (1 << (GoParser.AMPERSAND - 64)) | (1 << (GoParser.RECEIVE - 64)) | (
+                    1 << (GoParser.DECIMAL_LIT - 64)) | (1 << (GoParser.BINARY_LIT - 64)) | (
+                            1 << (GoParser.OCTAL_LIT - 64)) | (1 << (GoParser.HEX_LIT - 64)) | (
+                            1 << (GoParser.FLOAT_LIT - 64)) | (1 << (GoParser.IMAGINARY_LIT - 64)) | (
+                            1 << (GoParser.RUNE_LIT - 64)) | (1 << (GoParser.RAW_STRING_LIT - 64)) | (
+                            1 << (GoParser.INTERPRETED_STRING_LIT - 64)))) != 0):
                 self.state = 946
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,106,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input, 106, self._ctx)
                 if la_ == 1:
                     self.state = 940
                     self.expressionList()
@@ -7682,34 +7379,28 @@ class GoParser ( Parser ):
                     self.nonNamedType()
                     self.state = 944
                     self._errHandler.sync(self)
-                    la_ = self._interp.adaptivePredict(self._input,105,self._ctx)
+                    la_ = self._interp.adaptivePredict(self._input, 105, self._ctx)
                     if la_ == 1:
                         self.state = 942
                         self.match(GoParser.COMMA)
                         self.state = 943
                         self.expressionList()
 
-
                     pass
-
 
                 self.state = 949
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==GoParser.ELLIPSIS:
+                if _la == GoParser.ELLIPSIS:
                     self.state = 948
                     self.match(GoParser.ELLIPSIS)
-
 
                 self.state = 952
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==GoParser.COMMA:
+                if _la == GoParser.COMMA:
                     self.state = 951
                     self.match(GoParser.COMMA)
-
-
-
 
             self.state = 956
             self.match(GoParser.R_PAREN)
@@ -7721,16 +7412,14 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class MethodExprContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def nonNamedType(self):
-            return self.getTypedRuleContext(GoParser.NonNamedTypeContext,0)
-
+            return self.getTypedRuleContext(GoParser.NonNamedTypeContext, 0)
 
         def DOT(self):
             return self.getToken(GoParser.DOT, 0)
@@ -7741,16 +7430,13 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_methodExpr
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterMethodExpr" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterMethodExpr"):
                 listener.enterMethodExpr(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitMethodExpr" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitMethodExpr"):
                 listener.exitMethodExpr(self)
-
-
-
 
     def methodExpr(self):
 
@@ -7772,30 +7458,25 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ReceiverTypeContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def type_(self):
-            return self.getTypedRuleContext(GoParser.Type_Context,0)
-
+            return self.getTypedRuleContext(GoParser.Type_Context, 0)
 
         def getRuleIndex(self):
             return GoParser.RULE_receiverType
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterReceiverType" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterReceiverType"):
                 listener.enterReceiverType(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitReceiverType" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitReceiverType"):
                 listener.exitReceiverType(self)
-
-
-
 
     def receiverType(self):
 
@@ -7813,10 +7494,9 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class EossContext(ParserRuleContext):
 
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(self, parser, parent: ParserRuleContext = None, invokingState: int = -1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -7835,27 +7515,26 @@ class GoParser ( Parser ):
         def getRuleIndex(self):
             return GoParser.RULE_eoss
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterEoss" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterEoss"):
                 listener.enterEoss(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitEoss" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitEoss"):
                 listener.exitEoss(self)
-
-
-
 
     def eoss(self):
 
         localctx = GoParser.EossContext(self, self._ctx, self.state)
         self.enterRule(localctx, 196, self.RULE_eoss)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 964
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (1 << GoParser.EOSSS))) != 0)):
+            if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & (
+                    (1 << GoParser.SEMI) | (1 << GoParser.HUANHANG) | (1 << GoParser.HUANHANGG) | (
+                    1 << GoParser.EOSSS))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -7868,9 +7547,7 @@ class GoParser ( Parser ):
             self.exitRule()
         return localctx
 
-
-
-    def sempred(self, localctx:RuleContext, ruleIndex:int, predIndex:int):
+    def sempred(self, localctx: RuleContext, ruleIndex: int, predIndex: int):
         if self._predicates == None:
             self._predicates = dict()
         self._predicates[70] = self.expression_sempred
@@ -7881,32 +7558,22 @@ class GoParser ( Parser ):
         else:
             return pred(localctx, predIndex)
 
-    def expression_sempred(self, localctx:ExpressionContext, predIndex:int):
-            if predIndex == 0:
-                return self.precpred(self._ctx, 5)
-         
+    def expression_sempred(self, localctx: ExpressionContext, predIndex: int):
+        if predIndex == 0:
+            return self.precpred(self._ctx, 5)
 
-            if predIndex == 1:
-                return self.precpred(self._ctx, 4)
-         
+        if predIndex == 1:
+            return self.precpred(self._ctx, 4)
 
-            if predIndex == 2:
-                return self.precpred(self._ctx, 3)
-         
+        if predIndex == 2:
+            return self.precpred(self._ctx, 3)
 
-            if predIndex == 3:
-                return self.precpred(self._ctx, 2)
-         
+        if predIndex == 3:
+            return self.precpred(self._ctx, 2)
 
-            if predIndex == 4:
-                return self.precpred(self._ctx, 1)
-         
+        if predIndex == 4:
+            return self.precpred(self._ctx, 1)
 
-    def primaryExpr_sempred(self, localctx:PrimaryExprContext, predIndex:int):
-            if predIndex == 5:
-                return self.precpred(self._ctx, 1)
-         
-
-
-
-
+    def primaryExpr_sempred(self, localctx: PrimaryExprContext, predIndex: int):
+        if predIndex == 5:
+            return self.precpred(self._ctx, 1)

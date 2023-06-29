@@ -46,19 +46,18 @@ class Scope:
 
     def para_delete(self, str: str):
         del self.para_symbols[str]
-        
-        
+
     def resolve(self, name: str, ret: Symbol = None):
         if name in self.fun_symbols:
             ret = self.fun_symbols[name]
-            return SUCCESS,ret
+            return SUCCESS, ret
         elif name in self.para_symbols:
             ret = self.para_symbols[name]
-            return SUCCESS,ret
+            return SUCCESS, ret
         elif self.enclosing_scope is not None:
             return self.enclosing_scope.resolve(name, ret)
         else:
-            return FAIL,None
+            return FAIL, None
 
     def cur_resolve(self, name):
         if name in self.fun_symbols or name in self.para_symbols:

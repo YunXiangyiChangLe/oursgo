@@ -16,7 +16,7 @@ import logging
 
 
 def BlockTranslate(SymbolManager_: SymbolManager, TACBlock_: TACBlock) -> ASMBlock:
-    ASMBlock_: ASMBlock=ASMBlock()
+    ASMBlock_: ASMBlock = ASMBlock()
     SymbolManager_.push_reg(REG.EBP, 0)
     ASMBlock_.asmlines.append(construct_asm(op="push", src=REG.EBP))
     ASMBlock_.asmlines.append(construct_asm(op="mov", dst=REG.EBP, src=REG.ESP))

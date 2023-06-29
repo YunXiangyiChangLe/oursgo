@@ -10,6 +10,8 @@ from dataclasses import dataclass
 from typing import List
 from SymbolManager import *
 from BlockTranslator import BlockTranslate
+
+
 # 如何输入待定
 
 class Translator:
@@ -31,7 +33,7 @@ class Translator:
         global_ = self.TACFile_["global"]
         # if(global_==typing.List[Include.TACh.TACLine])
         # print("cnm")
-        #print(global_)
+        # print(global_)
         if not isinstance(global_, typing._GenericAlias):
             for i in range(len(global_)):
                 ASMLine_ = ""
@@ -42,7 +44,8 @@ class Translator:
                     print("global op error: " + str(global_[i].op))
             ASMSection_.asmblocks.append(ASMBlock_)
             self.ASMFile_.append(ASMSection_)
-        else:pass
+        else:
+            pass
 
     def textTranslate(self):
         ASMSection_ = ASMSection()

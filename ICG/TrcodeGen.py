@@ -161,17 +161,17 @@ class TrCodeGen(GoParserListener):
 
     def Go23file_(self, filename):
         with open(filename, 'w') as outfile:
-          keys = self.TACBlocks.keys()
-          for key in keys:
-              if key == list(self.TACBlocks.keys())[0]:
-                  continue
-              block = self.TACBlocks.get(key)
-              for it in block:
-                  outfile.write(
-                      f"{it.line}\t{self.TACOPToString(it.op)}\t{it.src1.value}\t{it.src2.value}\t{it.dst.value}\n")
-              outfile.write("----------------------\n")
-          outfile.write("----------------------\n")
-          outfile.close()
+            keys = self.TACBlocks.keys()
+            for key in keys:
+                if key == list(self.TACBlocks.keys())[0]:
+                    continue
+                block = self.TACBlocks.get(key)
+                for it in block:
+                    outfile.write(
+                        f"{it.line}\t{self.TACOPToString(it.op)}\t{it.src1.value}\t{it.src2.value}\t{it.dst.value}\n")
+                outfile.write("----------------------\n")
+            outfile.write("----------------------\n")
+            outfile.close()
 
     def push_line(self, op: TACOP, src1: Operand, src2: Operand, dst: Operand):
         curTACLine: TACLine = TACLine(
@@ -344,7 +344,8 @@ class TrCodeGen(GoParserListener):
                 eachType = ctx.signature().parameters().parameterDecl(
                     i).type_().typeName().getText()
                 eachSType = Symbol.toType(eachType)
-                for j in range(0, ctx.signature().parameters().parameterDecl(i).identifierList().IDENTIFIER().__len__()):
+                for j in range(0,
+                               ctx.signature().parameters().parameterDecl(i).identifierList().IDENTIFIER().__len__()):
                     funParaList.append(eachSType)
         symbol = Symbol(identifier, self.currentScope,
                         SymbolType.FUN, funRetTypeList, funParaList)
@@ -437,7 +438,8 @@ class TrCodeGen(GoParserListener):
                             SymbolType.VAR, type, is_array, array_length)
             if is_array:
                 self.push_line(TACOP.CREATLIST, Operand(varname, self.OperandTypereslove(varname)), Operand(to_string(
-                    array_length), self.OperandTypereslove(to_string(array_length))), Operand("INT", TACOPERANDTYPE.NULL_))
+                    array_length), self.OperandTypereslove(to_string(array_length))),
+                               Operand("INT", TACOPERANDTYPE.NULL_))
             self.currentScope.para_define(symbol)
         if ctx.expressionList():
             # right_values = []
@@ -447,18 +449,23 @@ class TrCodeGen(GoParserListener):
                 print('wrong number matched')
                 exit(-1)
             for i in range(0, n):
-                self.push_line(TACOP.ASSIGN, Operand((right_values)[i], self.OperandTypereslove(right_values[i])), Operand("", TACOPERANDTYPE.NULL_), Operand(
-                    ctx.identifierList().IDENTIFIER(i).getText(), self.OperandTypereslove(ctx.identifierList().IDENTIFIER(i).getText())))
+                self.push_line(TACOP.ASSIGN, Operand((right_values)[i], self.OperandTypereslove(right_values[i])),
+                               Operand("", TACOPERANDTYPE.NULL_), Operand(
+                        ctx.identifierList().IDENTIFIER(i).getText(),
+                        self.OperandTypereslove(ctx.identifierList().IDENTIFIER(i).getText())))
 
     # Enter a parse tree produced by GoParser#block.
 
     def enterBlock(self, ctx: GoParser.BlockContext):
         if ctx.parentCtx.children[0].getText() == 'for':
             self.push_line(TACOP.LABEL, Operand("FORLOOP" + self.forvalues.get(ctx.parentCtx).CurIndex,
-                           TACOPERANDTYPE.LABEL), Operand("", TACOPERANDTYPE.NULL_), Operand("", TACOPERANDTYPE.NULL_))
-        if ctx.parentCtx.children.__len__() >= 5 and ctx.parentCtx.children[4] == ctx and ctx.parentCtx.children[3].getText() == 'else':
+                                                TACOPERANDTYPE.LABEL), Operand("", TACOPERANDTYPE.NULL_),
+                           Operand("", TACOPERANDTYPE.NULL_))
+        if ctx.parentCtx.children.__len__() >= 5 and ctx.parentCtx.children[4] == ctx and ctx.parentCtx.children[
+            3].getText() == 'else':
             self.push_line(TACOP.LABEL, Operand("ELSE" + self.ifvalues.get(ctx.parentCtx),
-                           TACOPERANDTYPE.LABEL), Operand("", TACOPERANDTYPE.NULL_), Operand("", TACOPERANDTYPE.NULL_))
+                                                TACOPERANDTYPE.LABEL), Operand("", TACOPERANDTYPE.NULL_),
+                           Operand("", TACOPERANDTYPE.NULL_))
             self.addScope()
 
     # Exit a parse tree produced by GoParser#block.
@@ -474,9 +481,11 @@ class TrCodeGen(GoParserListener):
             if loopCondition:
                 self.push_line(loopCondition.op, loopCondition.src1,
                                loopCondition.src2, loopCondition.dst)
-        if ctx.parentCtx.children.__len__() > 2 and ctx.parentCtx.children[2] == ctx and ctx.parentCtx.children[0].getText() == 'if':
+        if ctx.parentCtx.children.__len__() > 2 and ctx.parentCtx.children[2] == ctx and ctx.parentCtx.children[
+            0].getText() == 'if':
             self.push_line(TACOP.GOTO, Operand("ENDIF" + self.ifvalues.get(ctx.parentCtx),
-                           TACOPERANDTYPE.LABEL), Operand("", TACOPERANDTYPE.NULL_), Operand("", TACOPERANDTYPE.NULL_))
+                                               TACOPERANDTYPE.LABEL), Operand("", TACOPERANDTYPE.NULL_),
+                           Operand("", TACOPERANDTYPE.NULL_))
         self.popScope()
 
     # Enter a parse tree produced by GoParser#statementList.
@@ -531,13 +540,16 @@ class TrCodeGen(GoParserListener):
             if left_values.__len__() != 1:
                 print('too many parameter for incdec \"++\" ')
                 exit(-1)
-            if ctx.parentCtx.parentCtx.parentCtx.children[0].getText() == 'for' and ctx.parentCtx.parentCtx == ctx.parentCtx.parentCtx.parentCtx.children[1]:
+            if ctx.parentCtx.parentCtx.parentCtx.children[0].getText() == 'for' and ctx.parentCtx.parentCtx == \
+                    ctx.parentCtx.parentCtx.parentCtx.children[1]:
                 varname = left_values[0]
                 varvalue = '1'
                 fortmp: ForStmt = self.forvalues.get(
                     ctx.parentCtx.parentCtx.parentCtx)
-                tmpline: TACLine = TACLine(self.lineIndex, TACOP.ADD, Operand(varname, self.OperandTypereslove(varname)), Operand(
-                    varvalue, self.OperandTypereslove(varvalue)), Operand(varname, self.OperandTypereslove(varname)), self.currentScope)
+                tmpline: TACLine = TACLine(self.lineIndex, TACOP.ADD,
+                                           Operand(varname, self.OperandTypereslove(varname)), Operand(
+                        varvalue, self.OperandTypereslove(varvalue)),
+                                           Operand(varname, self.OperandTypereslove(varname)), self.currentScope)
                 fortmp.UpdateCon = tmpline
                 self.forvalues[
                     ctx.parentCtx.parentCtx.parentCtx] = fortmp
@@ -579,19 +591,22 @@ class TrCodeGen(GoParserListener):
             if left_values.__len__() != 1 or right_values.__len__() != 1:
                 print('too many parameter for assign \"+=\" ')
                 exit(-1)
-            if ctx.parentCtx.parentCtx.parentCtx.children[0].getText() == 'for' and ctx.parentCtx.parentCtx == ctx.parentCtx.parentCtx.parentCtx.children[1]:
+            if ctx.parentCtx.parentCtx.parentCtx.children[0].getText() == 'for' and ctx.parentCtx.parentCtx == \
+                    ctx.parentCtx.parentCtx.parentCtx.children[1]:
                 varname = left_values[0]
                 varvalue = right_values[0]
                 fortmp: ForStmt = self.forvalues.get(
                     ctx.parentCtx.parentCtx.parentCtx)
-                tmpline = TACLine(self.lineIndex, TACOP.ADD, Operand(varname, self.OperandTypereslove(varname)), Operand(
-                    varvalue, self.OperandTypereslove(varvalue)), Operand(varname, self.OperandTypereslove(varname)), self.currentScope)
+                tmpline = TACLine(self.lineIndex, TACOP.ADD, Operand(varname, self.OperandTypereslove(varname)),
+                                  Operand(
+                                      varvalue, self.OperandTypereslove(varvalue)),
+                                  Operand(varname, self.OperandTypereslove(varname)), self.currentScope)
                 fortmp.UpdateCon = tmpline
                 self.forvalues[ctx.parentCtx.parentCtx.parentCtx] = fortmp
             else:
                 varname = left_values[0]
                 varvalue = right_values[0]
-                self.push_line(TACOP.ADD, Operand(varname, self .OperandTypereslove(varname)), Operand(
+                self.push_line(TACOP.ADD, Operand(varname, self.OperandTypereslove(varname)), Operand(
                     varvalue, self.OperandTypereslove(varvalue)), Operand(varname, self.OperandTypereslove(varname)))
 
     # Enter a parse tree produced by GoParser#assign_op.
@@ -623,9 +638,12 @@ class TrCodeGen(GoParserListener):
                 print('wrong number match ')
                 exit(-1)
             for i in range(0, n):
-                self.push_line(TACOP.ASSIGN, Operand(right_values[i], self.OperandTypereslove(right_values[i])), Operand("", TACOPERANDTYPE. NULL_), Operand(
-                    ctx.identifierList().IDENTIFIER(i).getText(), self.OperandTypereslove(ctx.identifierList().IDENTIFIER(i).getText())))
-        if ctx.parentCtx.parentCtx.parentCtx.children[0].getText() == 'for' and ctx.parentCtx.parentCtx.parentCtx.children[1] == ctx.parentCtx.parentCtx:
+                self.push_line(TACOP.ASSIGN, Operand(right_values[i], self.OperandTypereslove(right_values[i])),
+                               Operand("", TACOPERANDTYPE.NULL_), Operand(
+                        ctx.identifierList().IDENTIFIER(i).getText(),
+                        self.OperandTypereslove(ctx.identifierList().IDENTIFIER(i).getText())))
+        if ctx.parentCtx.parentCtx.parentCtx.children[0].getText() == 'for' and \
+                ctx.parentCtx.parentCtx.parentCtx.children[1] == ctx.parentCtx.parentCtx:
             tmp: ForStmt = self.forvalues.get(
                 ctx.parentCtx.parentCtx.parentCtx)
             for i in range(0, n):
@@ -836,7 +854,8 @@ class TrCodeGen(GoParserListener):
         tmp: ForStmt = self.forvalues.get(ctx)
         self.popScope()
         self.push_line(TACOP.LABEL, Operand("ENDFOR" + self.forvalues.get(ctx).CurIndex,
-                       TACOPERANDTYPE.LABEL), Operand("", TACOPERANDTYPE.NULL_), Operand("", TACOPERANDTYPE.NULL_))
+                                            TACOPERANDTYPE.LABEL), Operand("", TACOPERANDTYPE.NULL_),
+                       Operand("", TACOPERANDTYPE.NULL_))
 
     # Enter a parse tree produced by GoParser#forClause.
     def enterForClause(self, ctx: GoParser.ForClauseContext):
@@ -992,14 +1011,14 @@ class TrCodeGen(GoParserListener):
 
     # Enter a parse tree produced by GoParser#parameterDecl.
     def enterParameterDecl(self, ctx: GoParser.ParameterDeclContext):
-      if ctx.identifierList():
-          n = ctx.identifierList().IDENTIFIER().__len__()
-          for i in range(0, n):
-              integer: string = ctx.identifierList().IDENTIFIER(i).getText()
-              stype = ctx.type_().typeName().getText()
-              type: Type = Symbol.toType(stype)
-              symbol = Symbol(integer, self.currentScope, SymbolType.VAR, type)
-              self.currentScope.para_define(symbol)
+        if ctx.identifierList():
+            n = ctx.identifierList().IDENTIFIER().__len__()
+            for i in range(0, n):
+                integer: string = ctx.identifierList().IDENTIFIER(i).getText()
+                stype = ctx.type_().typeName().getText()
+                type: Type = Symbol.toType(stype)
+                symbol = Symbol(integer, self.currentScope, SymbolType.VAR, type)
+                self.currentScope.para_define(symbol)
 
     # Exit a parse tree produced by GoParser#parameterDecl.
     def exitParameterDecl(self, ctx: GoParser.ParameterDeclContext):
@@ -1065,32 +1084,41 @@ class TrCodeGen(GoParserListener):
         if left.__len__() != 1 or right.__len__() != 1:
             print('wrong literal number2')
             exit(-1)
-        if ctx.parentCtx.parentCtx.children[0].getText() == 'for' and ctx.parentCtx.parentCtx.children[1] == ctx.parentCtx:
+        if ctx.parentCtx.parentCtx.children[0].getText() == 'for' and ctx.parentCtx.parentCtx.children[
+            1] == ctx.parentCtx:
             # tmp = ForStmt()
             tmp = self.forvalues.get(ctx.parentCtx.parentCtx)
             dst = 'ENDFOR' + tmp.CurIndex
             dst_ = 'FORLOOP' + tmp.CurIndex
             tmpline = TACLine()
             if ctx.EQUALS() != None:
-                tmpline = TACLine(self.lineIndex, TACOP.IFEQ, Operand(left[0], self.OperandTypereslove(left[0])), Operand(
-                    right[0], self.OperandTypereslove(right[0])), Operand(dst_, TACOPERANDTYPE.LABEL), self.currentScope)
+                tmpline = TACLine(self.lineIndex, TACOP.IFEQ, Operand(left[0], self.OperandTypereslove(left[0])),
+                                  Operand(
+                                      right[0], self.OperandTypereslove(right[0])), Operand(dst_, TACOPERANDTYPE.LABEL),
+                                  self.currentScope)
                 self.push_line(TACOP.IFNEQ, Operand(left[0], self.OperandTypereslove(left[0])), Operand(
                     right[0], self.OperandTypereslove(right[0])), Operand(dst, TACOPERANDTYPE.LABEL))
             elif ctx.GREATER() != None:
-                tmpline = TACLine(self.lineIndex, TACOP.IFGE, Operand(left[0], self.OperandTypereslove(left[0])), Operand(
-                    right[0], self.OperandTypereslove(right[0])), Operand(dst_, TACOPERANDTYPE.LABEL), self.currentScope)
+                tmpline = TACLine(self.lineIndex, TACOP.IFGE, Operand(left[0], self.OperandTypereslove(left[0])),
+                                  Operand(
+                                      right[0], self.OperandTypereslove(right[0])), Operand(dst_, TACOPERANDTYPE.LABEL),
+                                  self.currentScope)
 
                 self.push_line(TACOP.IFLT, Operand(left[0], self.OperandTypereslove(left[0])), Operand(
                     right[0], self.OperandTypereslove(right[0])), Operand(dst, TACOPERANDTYPE.LABEL))
             elif ctx.LESS() != None:
-                tmpline = TACLine(self.lineIndex, TACOP.IFLT, Operand(left[0], self.OperandTypereslove(left[0])), Operand(
-                    right[0], self.OperandTypereslove(right[0])), Operand(dst_, TACOPERANDTYPE.LABEL), self.currentScope)
+                tmpline = TACLine(self.lineIndex, TACOP.IFLT, Operand(left[0], self.OperandTypereslove(left[0])),
+                                  Operand(
+                                      right[0], self.OperandTypereslove(right[0])), Operand(dst_, TACOPERANDTYPE.LABEL),
+                                  self.currentScope)
 
                 self.push_line(TACOP.IFGE, Operand(left[0], self.OperandTypereslove(left[0])), Operand(
                     right[0], self.OperandTypereslove(right[0])), Operand(dst, TACOPERANDTYPE.LABEL))
             elif ctx.LESS_OR_EQUALS() != None:
-                tmpline = TACLine(self.lineIndex, TACOP.IFLE, Operand(left[0], self.OperandTypereslove(left[0])), Operand(
-                    right[0], self.OperandTypereslove(right[0])), Operand(dst_, TACOPERANDTYPE.LABEL), self.currentScope)
+                tmpline = TACLine(self.lineIndex, TACOP.IFLE, Operand(left[0], self.OperandTypereslove(left[0])),
+                                  Operand(
+                                      right[0], self.OperandTypereslove(right[0])), Operand(dst_, TACOPERANDTYPE.LABEL),
+                                  self.currentScope)
 
                 self.push_line(TACOP.IFGT, Operand(left[0], self.OperandTypereslove(left[0])), Operand(
                     right[0], self.OperandTypereslove(right[0])), Operand(dst, TACOPERANDTYPE.LABEL))
@@ -1215,7 +1243,8 @@ class TrCodeGen(GoParserListener):
             temp_ptr_offset = self.CreateLocalVar()
             int_size = "4"
             self.push_line(TACOP.MUL, Operand(int_size, self.OperandTypereslove(int_size)), Operand(
-                index_s, self.OperandTypereslove(index_s)), Operand(temp_ptr_offset, self.OperandTypereslove(temp_ptr_offset)))
+                index_s, self.OperandTypereslove(index_s)),
+                           Operand(temp_ptr_offset, self.OperandTypereslove(temp_ptr_offset)))
             temp_ptr = self.CreateLocalVar()
             self.push_line(TACOP.ADD,
                            Operand(identity, self.OperandTypereslove(identity)),

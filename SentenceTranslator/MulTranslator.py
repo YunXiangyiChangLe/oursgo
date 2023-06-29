@@ -20,7 +20,7 @@ class MulTranslator:
             eax_val_pre_mem = SymbolManager_.avalue_mem(eax_val_pre)
             if eax_val_pre_mem == -1:
                 # 内存中没有位置, push 保存
-                SymbolManager_.push_reg(REG.EAX,1)
+                SymbolManager_.push_reg(REG.EAX, 1)
                 asmlines.append(construct_asm(op="push", src=REG.EAX))
             else:
                 # 内存中有位置, 更新内存中的值
@@ -108,7 +108,7 @@ class MulTranslator:
 
         # MUL
         op: str = to_string(op=TACLine_.op)
-        asmlines.append(construct_asm(op=op,src= reg_src2))
+        asmlines.append(construct_asm(op=op, src=reg_src2))
         SymbolManager_.set_avalue_reg(SymbolManager_.encode_var(str_dst), REG.EAX)
 
         return asmlines

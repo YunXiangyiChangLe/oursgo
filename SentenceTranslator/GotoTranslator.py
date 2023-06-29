@@ -13,4 +13,3 @@ class GotoTranslator:
         str_label: str = TACLine_.src1.value
         asmlines.append(construct_asm(op="jmp", src=str_label))
         return asmlines
-

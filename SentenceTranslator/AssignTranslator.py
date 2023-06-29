@@ -25,7 +25,7 @@ class AssignTranslator:
         if replaced_reg and not replaced_reg.no_use:
             if replaced_reg.mem == -1:
                 # 如果该变量内存中没有位置，push备份
-                SymbolManager_.push_reg(dst_reg,1)
+                SymbolManager_.push_reg(dst_reg, 1)
                 asmlines.append(construct_asm(op="push", src=dst_reg))
             else:
                 # 如果该变量内存中有位置，直接更新该变量在内存中的值

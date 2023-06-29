@@ -15,15 +15,15 @@ class REG(Enum):
 
 
 def to_string(reg: REG) -> str:
-    reg_dic={
-        REG.EAX:"eax",
-        REG.EBX:"ebx",
-        REG.ECX:"ecx",
-        REG.EDX:"edx",
-        REG.ESI:"esi",
-        REG.EDI:"edi",
-        REG.ESP:"esp",
-        REG.EBP:"ebp",
-        REG.EIP:"eip"
+    reg_dic = {
+        REG.EAX: "eax",
+        REG.EBX: "ebx",
+        REG.ECX: "ecx",
+        REG.EDX: "edx",
+        REG.ESI: "esi",
+        REG.EDI: "edi",
+        REG.ESP: "esp",
+        REG.EBP: "ebp",
+        REG.EIP: "eip"
     }
-    return reg_dic.get(reg,"error_reg")
+    return reg_dic.get(reg, "error_reg")

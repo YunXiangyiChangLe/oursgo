@@ -55,11 +55,11 @@ class IfTranslator:
                 reg_src2: REG = SymbolManager_.avalue_reg(str_src2_encode)
                 asmlines.append(construct_asm(op="cmp", dst=reg_src1, src=reg_src2))
             elif pos == POSTYPE.MEM:
-                mem_src2 :int= SymbolManager_.avalue_mem(str_src2_encode)
-                asmlines.append(construct_asm(op="cmp",dst= reg_src1,src= mem_src2))
+                mem_src2: int = SymbolManager_.avalue_mem(str_src2_encode)
+                asmlines.append(construct_asm(op="cmp", dst=reg_src1, src=mem_src2))
             elif pos == POSTYPE.GLOBAL:
-                asmlines.append(construct_asm(op="cmp",dst= reg_src1,src= str_src2))
+                asmlines.append(construct_asm(op="cmp", dst=reg_src1, src=str_src2))
             else:
                 print("if src2 default error")
-        asmlines.append(construct_asm(op=str_op,src= str_label))
+        asmlines.append(construct_asm(op=str_op, src=str_label))
         return asmlines

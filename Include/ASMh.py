@@ -18,23 +18,20 @@ class OprandType(Enum):
     t_REG = 3
     t_MEM = 4
 
+
 ASMLines = List[str]
+
 
 @dataclass
 class ASMBlock:
-    name: str=""
-    asmlines: ASMLines=field(default_factory=list)
+    name: str = ""
+    asmlines: ASMLines = field(default_factory=list)
 
 
 @dataclass
 class ASMSection:
     name: str = ""
     asmblocks: List[ASMBlock] = field(default_factory=list)
-
-
-
-
-
 
 
 ASMFile = List[ASMSection]

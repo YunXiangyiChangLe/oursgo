@@ -19,19 +19,19 @@ class ParaTranslator:
             str_src1: str = SymbolManager_.encode_var(TACLine_.src1.value)
             pos: POSTYPE = SymbolManager_.position(str_src1)
             if pos == POSTYPE.REG:
-                reg_src1:REG = SymbolManager_.avalue_reg(str_src1)
+                reg_src1: REG = SymbolManager_.avalue_reg(str_src1)
                 SymbolManager_.push_reg(reg_src1, 0)
-                asmlines.append(construct_asm(op="push",src= reg_src1))
+                asmlines.append(construct_asm(op="push", src=reg_src1))
             elif pos == POSTYPE.MEM:
-                mem_src1 :int= SymbolManager_.avalue_mem(str_src1)
-                asmlines.append(construct_asm(op="mov",dst= REG.EDI,src= mem_src1))
+                mem_src1: int = SymbolManager_.avalue_mem(str_src1)
+                asmlines.append(construct_asm(op="mov", dst=REG.EDI, src=mem_src1))
                 SymbolManager_.push_reg(REG.EDI, 0)
-                asmlines.append(construct_asm(op="push",src= REG.EDI))
+                asmlines.append(construct_asm(op="push", src=REG.EDI))
             elif pos == POSTYPE.GLOBAL:
-                src :str= TACLine_.src1.value
-                asmlines.append(construct_asm(op="mov",dst= REG.EDI,src= src))
+                src: str = TACLine_.src1.value
+                asmlines.append(construct_asm(op="mov", dst=REG.EDI, src=src))
                 SymbolManager_.push_reg(REG.EDI, 0)
-                asmlines.append(construct_asm(op="push",src= REG.EDI))
+                asmlines.append(construct_asm(op="push", src=REG.EDI))
             else:
                 print("para default error")
 

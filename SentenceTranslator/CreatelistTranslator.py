@@ -10,7 +10,7 @@ class CreatelistTranslator:
     def SentenceTranslate_(self, SymbolManager_: SymbolManager, TACLine_: TACLine) -> ASMLines:
         asmlines: ASMLines = []
         array_str_encode: str = SymbolManager_.encode_var(TACLine_.src1.value)
-        #这里的int转化不知道会不会出错。。。
+        # 这里的int转化不知道会不会出错。。。
         array_space: int = 4 * int(TACLine_.src2.value)
         SymbolManager_.set_esp_bias(4)
         asmlines.append(construct_asm(op="sub", dst=REG.ESP, src=str(4)))
